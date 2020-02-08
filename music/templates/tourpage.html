@@ -1,0 +1,156 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>HarMony</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'home/img/core-img/favicon.ico' %}">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{% static 'home/style.css' %}">
+
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="lds-ellipsis">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+    <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+        <!-- Navbar Area -->
+        <div class="oneMusic-main-menu">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Menu -->
+                    <nav class="classy-navbar justify-content-between" id="oneMusicNav">
+
+                        <!-- Nav brand -->
+                        <a href="index.html" class="nav-brand" style="color:beige">HARMONY</a>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+
+                            <!-- Close Button -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Nav Start -->
+                            <div class="classynav">
+                              <ul>
+                                  <li><a href="/music/home">Home</a></li>
+                                  <li><a href="/music/applypage">Apply for artist</a></li>   
+                                  <li><a href="#">Events</a></li>
+                                  <li><a href="/music/logout">Logout</a></li>
+                              </ul>
+
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ##### Header Area End ##### -->
+
+    <!-- ##### Breadcumb Area Start ##### -->
+    <section class="breadcumb-area bg-img bg-overlay" style="background-image: url('{% static "home/img/bg-img/breadcumb3.jpg" %}');">
+        <div class="bradcumbContent">
+            <p>See what’s new</p>
+            <h2>Events</h2>
+        </div>
+    </section>
+    <!-- ##### Breadcumb Area End ##### -->
+
+    <!-- ##### Events Area Start ##### -->
+    <section class="events-area section-padding-100">
+        <div class="container">
+            <div class="row">
+              {% for tours in tour %}
+                <!-- Single Event Area -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="single-event-area mb-30">
+                        <div class="event-thumbnail">
+                            <img src="/media/{{tours.tourimage}}" alt="">
+                        </div>
+                        <div class="event-text">
+                            <h4>{{tours.eventname}}</h4>
+                            <div class="event-meta-data">
+                                <a href="#" class="event-place">time</a>
+                                <a href="#" class="event-date">{{tours.date}}</a>
+                            </div>
+                            <div class="event-meta-data">
+                                <a href="#" class="event-date">{{tours.day}}</a>
+                                <a href="#" class="event-date">{{tours.address}}</a>
+                            </div>
+                            <a href="#" class="btn see-more-btn">{{tours.city}}</a>
+                        </div>
+                    </div>
+                </div>
+              {% endfor %}
+                <!-- Single Event Area -->
+   
+            </div>
+
+            <!-- <div class="row">
+                <div class="col-12">
+                    <div class="load-more-btn text-center mt-70">
+                        <a href="#" class="btn oneMusic-btn">Load More <i class="fa fa-angle-double-right"></i></a>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </section>
+    <!-- ##### Events Area End ##### -->
+
+
+   
+    <!-- ##### Footer Area Start ##### -->
+    <footer class="footer-area">
+        <div class="container">
+            <div class="row d-flex flex-wrap align-items-center">
+                <div class="col-12 col-md-6">
+                    <a href="#" style="color:beige">HARMONY</a>
+                    <p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This is made <i class="fa fa-mic-o" aria-hidden="true"></i> by <a href="#" target="_blank">Ram Birla</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- ##### Footer Area Start ##### -->
+
+    <!-- ##### All Javascript Script ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="{% static 'home/js/jquery/jquery-2.2.4.min.js' %}"></script>
+    <!-- Popper js -->
+    <script src="{% static 'home/js/bootstrap/popper.min.js' %}"></script>
+    <!-- Bootstrap js -->
+    <script src="{% static 'home/js/bootstrap/bootstrap.min.js' %}"></script>
+    <!-- All Plugins js -->
+    <script src="{% static 'home/js/plugins/plugins.js' %}"></script>
+    <!-- Active js -->
+    <script src="{% static 'home/js/active.js' %}"></script>
+</body>
+
+</html>

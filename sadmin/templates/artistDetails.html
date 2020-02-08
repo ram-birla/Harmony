@@ -1,0 +1,70 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Hello</title>
+    <script>
+        function checkForm(){
+            artistname = document.getElementById('artistname');
+            songtype = document.getElementById('songtype');
+            if(artistname.value !='others'){
+                artistname.readOnly = true
+            }
+            if(songtype.value !='others'){
+                songtype.readOnly = true
+            }
+        }
+        
+    </script>
+  </head>
+  <body onload="checkForm()" style="background-image: url('{% static "artform/images/bgform3.jpeg" %}'); background-attachment: fixed; background-repeat: no-repeat; background-size: 1750px 1000px;">
+    <h1 style="text-align: center; color:white;">VERIFY DETAILS</h1>
+    <form action='final/' method="POST" >
+        {% csrf_token %}
+        <div class="container" style="text-align: center;">
+            <img src="/media/{{artists.image}}" class="card-img-top img-thumbnail mt-2 mx-auto" alt="Responsive image" style="height: 15rem; width:15rem; border-radius: 50%;">
+        </div>
+        <div class="container" style="text-align: center;">
+        <div class="row">
+            <div class="form-group col-md-6">
+            <h4 style="color:white;">Name:</h4>
+            <input type="text" name="artistname" class="form-control" value="{{artists.artistname}}" id="artistname" placeholder="Example input">    
+        </div>
+            <div class="form-group col-md-6">
+                <h4 style="color:white;">Songtype:</h4>
+              <input type="text" name="stype" class="form-control" value="{{artists.songtype.name}}" id="songtype" placeholder="Example input">
+            </div>
+        </div>
+        </div>
+            <div class="container" style="text-align: center;">
+                   <h3 style="color:white;">Sample Audio</h3>
+                    <audio controls="controls">
+                        <source src="{{ artists.sampleaudio.url }}" type="audio/mp3" />
+                    </audio>    
+                </div>
+                <div class="container" style="text-align: center;">
+                <h4 style="color:white;"   >Current Status: {{artists.status}}</h4>
+            </div>
+                <input type="hidden" name="aid" value="{{artists.artistid}}">
+                <div class="container" style="text-align: center;">
+                <button type="submit" name="approve" value="approve" class="btn btn-success" >Approve</button>
+                <button type="submit"  name="reject" value="reject" class="btn btn-danger" >Reject</button>
+              </div>
+          </form>
+          <div class="container mt-2" style="text-align: center;">
+          <button  onclick="window.location.href='/adm/adminHelp/'"   class="btn btn-primary" >Help</button>
+        </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

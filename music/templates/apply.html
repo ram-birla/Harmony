@@ -1,0 +1,143 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Contact V4</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="{% static 'artform/images/icons/favicon.ico' %}"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'artform/vendor/bootstrap/css/bootstrap.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'artform/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'artform/vendor/animate/animate.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'artform/vendor/css-hamburgers/hamburgers.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'artform/vendor/animsition/css/animsition.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'artform/vendor/select2/select2.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'artform/vendor/daterangepicker/daterangepicker.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'artform/css/util.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'artform/css/main.css' %}">
+<!--===============================================================================================-->
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+</head>
+<body style="background-image: url('{% static "artform/images/bgform.jpg" %}'); background-attachment: fixed; background-repeat: no-repeat; background-size: 1750px 1000px;">
+
+
+	<div class="container-contact100">
+		<div class="wrap-contact100">
+			<form class="contact100-form validate-form" enctype="multipart/form-data" method="post" action="/music/applysub/">
+                {% csrf_token %}
+                <span class="contact100-form-title">
+					Become An Artist
+                </span>
+
+                <div class="wrap-input100 validate-input" data-validate = "Name is required">
+                    <span class="label-input100">Name</span>
+                    <input class="input100" type="text" name="name" placeholder="Enter your name">
+                <span class="focus-input100"></span>
+                </div> 
+
+                <div class="wrap-input100 validate-input" data-validate = "Name is required">
+                    <span class="label-input100">Age</span>
+                    <input class="input100" type="text" name="age" placeholder="Enter your Age">
+                <span class="focus-input100"></span>
+                </div> 
+
+                <div class="wrap-input100 input100-select">
+					<span class="label-input100">Song Type</span>
+					<div>
+                        <select class="selection-2" name="stype">
+							<option value='-1'>Song Type</option>
+                            {% for songtype in songtypes %}
+                            <option value="{{songtype.name}}">{{songtype.name}}</option>
+                            {% endfor %}
+                        </select>
+                        
+                    </div>
+					<span class="focus-input100"></span>
+                </div>
+            
+                <div class="wrap-input100 validate-input" data-validate = "valid image">
+					<span class="label-input100">Your Image</span>
+					<input class="input100" type="file" name="image" accept="image" placeholder="Upload your Image">
+					<span class="focus-input100"></span>
+				</div>
+  
+                <div class="wrap-input100 validate-input" data-validate = "valid audio">
+					<span class="label-input100">Upload Your Sample Music</span>
+					<input class="input100" type="file" name="samplefile" accept="audio" placeholder="Upload your Sample">
+					<span class="focus-input100"></span>
+				</div>
+  
+
+                <div class="container-contact100-form-btn">
+					<div class="wrap-contact100-form-btn">
+						<div class="contact100-form-bgbtn"></div>
+						<button class="contact100-form-btn">
+							<span>
+								Submit
+								<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+							</span>
+						</button>
+					</div>
+				</div>
+			</form>
+			
+		{% if file_status %}
+	<center><b><p style="size:20x;color:black ;">Application <a href="{{file_status}}">{{file_status}}</a></p></b></center>
+		{% endif %}
+	
+		</div>
+	</div>
+
+
+	<div id="dropDownSelect1"></div>
+
+<!--===============================================================================================-->
+	<script src="{% static 'artform/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'artform/vendor/animsition/js/animsition.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'artform/vendor/bootstrap/js/popper.js' %}"></script>
+	<script src="{% static 'artform/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'artform/vendor/select2/select2.min.js' %}"></script>
+	<script>
+		$(".selection-2").select2({
+			minimumResultsForSearch: 20,
+			dropdownParent: $('#dropDownSelect1')
+		});
+	</script>
+<!--===============================================================================================-->
+	<script src="{% static 'artform/vendor/daterangepicker/moment.min.js' %}"></script>
+	<script src="{% static 'artform/vendor/daterangepicker/daterangepicker.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'artform/vendor/countdowntime/countdowntime.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'artform/js/main.js' %}"></script>
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-23581568-13');
+</script>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+ 
+</body>
+</html>

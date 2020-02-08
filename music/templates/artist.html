@@ -1,0 +1,144 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>HarMony</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'home/img/core-img/favicon.ico' %}">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{% static 'home/style.css' %}">
+
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="lds-ellipsis">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+    <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+        <!-- Navbar Area -->
+        <div class="oneMusic-main-menu">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Menu -->
+                    <nav class="classy-navbar justify-content-between" id="oneMusicNav">
+
+                        <!-- Nav brand -->
+                        <a href="#" class="nav-brand" style="color:beige">HARMONY</a>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+
+                            <!-- Close Button -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Nav Start -->
+                            <div class="classynav">
+                                <ul>
+                                    <li><a href="#">Home</a></li>
+                                    <!-- <li><a href="/music/applypage">Apply for artist</a></li>    -->
+                                    <li><a href="/music/tourdetail">Events</a></li>
+                                    <li><a href="/music/logout">Logout</a></li>
+                                </ul>
+                            </div>
+                            <!-- Nav End -->
+
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ##### Header Area End ##### -->
+
+    <!-- ##### Hero Area Start ##### -->
+
+    <!-- ##### Buy Now Area Start ##### -->
+    <section class="oneMusic-buy-now-area has-fluid bg-gray section-padding-100">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading style-2">
+                        <p>Tune into new</p>
+                        <h2>Listen By Artist</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row" >
+                <div class="features">
+                
+                {% for artists in artist %}
+                
+                <div class="col-auto col-sm-auto col-md-auto col-lg-auto">
+                    <div class="single-album-area wow fadeInUp" data-wow-delay="200ms">
+                        <div class="album-thumb">
+                            <img src="/media/{{artists.image}}" alt="" style="height: 8rem; width:8rem; border-radius:50%">
+                        </div>
+                        <div class="load-more-btn text-center wow fadeInUp" data-wow-delay="300ms">
+                            <h5>{{artists.artistname}}</h5>
+                            <h6>{{artists.songcount}} Songs</h6>
+                        <button class="btn btn-dark">Playlist</button>   
+                        <button class="btn btn-danger">Follow</button>    
+                    </div>    
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<!-- ##### Buy Now Area End ##### -->
+
+
+<!-- ##### Footer Area Start ##### -->
+<footer class="footer-area">
+    <div class="container">
+        <div class="row d-flex flex-wrap align-items-center">
+            <div class="col-12 col-md-6">
+                <a href="#" style="color:beige">HARMONY</a>
+                <p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This is made <i class="fa fa-mic-o" aria-hidden="true"></i> by <a href="#" target="_blank">Ram Birla</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- ##### Footer Area Start ##### -->
+
+<!-- ##### All Javascript Script ##### -->
+<!-- jQuery-2.2.4 js -->
+<script src="{% static 'home/js/jquery/jquery-2.2.4.min.js' %}"></script>
+<!-- Popper js -->
+<script src="{% static 'home/js/bootstrap/popper.min.js' %}"></script>
+<!-- Bootstrap js -->
+<script src="{% static 'home/js/bootstrap/bootstrap.min.js' %}"></script>
+<!-- All Plugins js -->
+<script src="{% static 'home/js/plugins/plugins.js' %}"></script>
+<!-- Active js -->
+<script src="{% static 'home/js/active.js' %}"></script>
+</body>
+
+</html>

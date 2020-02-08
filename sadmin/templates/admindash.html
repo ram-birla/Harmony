@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Admin</title>
+  </head>
+  <body>
+      <nav>
+        <div class="row">
+        <div class="container">
+            <h2>DASHBORD</h2>
+        </div>
+        
+            <a href="/music/logout" class="btn btn-danger">Logout</a>
+        </div>
+    </nav>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">User Name</th>
+            <th scope="col">Artistic Name</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
+            <th scope="col">Details</th>
+         
+          </tr>
+        </thead>
+        <tbody>
+            {% for artist in artists %}
+            <div class="modal fade" id="example{{forloop.counter}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Artist</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <img src="/media/{{artist.image}}" class="card-img-top img-thumbnail mt-2 mx-auto" alt="Responsive image" style="height: 8rem; width:8rem;">
+                    <div class="modal-body">
+                      Aplicant Name: {{artist.user.last_name}}<br>
+                      Email: {{artist.user.email}}<br>
+                      Contact: {{artist.muser.contact}}<br>
+                      Category: {{artist.songtype.name}}<br>
+                      Sample Name: {{artist.name}}<br>
+                      </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>            
+
+            {% if artist.status == -1 %}
+            <tr class="bg-danger" style="color: rgb(255, 255, 255)" >
+              <th scope="row">{{forloop.counter}}</th>
+              <td>{{artist.user.email}}</td>
+              <td>{{artist.artistname}}</td>
+              <td>{{artist.status}}</td>
+              <td><button type="button" onclick="window.location.href='{% url 'artistDetails' artist.artistid %}'" class="btn btn-warning" >Approve</button></td>
+              <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#example{{forloop.counter}}">Details</button></td>
+            </tr>
+            {% elif artist.status == 1 %}
+            <tr class="bg-success">
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{artist.user.last_name}}</td>
+                <td>{{artist.artistname}}</td>
+                <td>{{artist.status}}</td>
+                <td><button type="button" onclick="window.location.href='{% url 'artistDetails' artist.artistid %}'" class="btn btn-warning" >Approve</button></td>
+                <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#example{{forloop.counter}}">Details</button></td>
+              </tr>
+              {% else %}
+              <tr>
+                  <th scope="row">{{forloop.counter}}</th>
+                  <td>{{artist.user.last_name}}</td>
+                  <td>{{artist.artistname}}</td>
+                  <td>{{artist.status}}</td>
+                  <td><button type="button" onclick="window.location.href='{% url 'artistDetails' artist.artistid %}'" class="btn btn-warning" >Approve</button></td>
+                  <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#example{{forloop.counter}}">Details</button></td>
+                </tr>
+            {% endif %}
+            {% endfor %}
+          </tbody>
+        </table>
+  
+      <!-- Optional JavaScript -->
+      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </body>
+  </html>
