@@ -1,0 +1,399 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Info</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Mixtape template project">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="{% static 'landing/styles/bootstrap-4.1.2/bootstrap.min.css' %}">
+<link href="{% static 'landing/plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{% static 'landing/styles/elements.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'landing/styles/elements_responsive.css' %}">
+</head>
+<body>
+
+<div class="super_container">
+	
+	<!-- Header -->
+	<header class="header">
+		<div class="header_content d-flex flex-row align-items-center justify-content-center">
+			<div class="logo"><a href="#">Harmony</a></div>
+			<div class="log_reg">
+				<ul class="d-flex flex-row align-items-start justify-content-start">
+					<li><a href="/music/login">Login</a></li>
+					<li><a href="/music/register">Register</a></li>
+				</ul>
+			</div>
+			<nav class="main_nav">
+				<ul class="d-flex flex-row align-items-start justify-content-start">
+					<li><a href="/music/">Home</a></li>
+					<li><a href="/music/about">About us</a></li>
+					<li><a href="#">Info</a></li>
+					<li><a href="/music/contact">Contact</a></li>
+				</ul>
+			</nav>
+			<div class="hamburger ml-auto">
+				<div class="d-flex flex-column align-items-end justify-content-between">
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<!-- Menu -->
+
+	<div class="menu">
+		<div>
+			<div class="menu_overlay"></div>
+			<div class="menu_container d-flex flex-column align-items-start justify-content-center">
+				<div class="menu_log_reg">
+					<ul class="d-flex flex-row align-items-start justify-content-start">
+						<li><a href="/music/login">Login</a></li>
+						<li><a href="/music/register">Register</a></li>
+					</ul>
+				</div>
+				<nav class="menu_nav">
+					<ul class="d-flex flex-column align-items-start justify-content-start">
+						<li><a href="/music/">Home</a></li>
+						<li><a href="/music/about">About us</a></li>
+						<li><a href="#">Info</a></li>
+						<li><a href="contact.html">Contact</a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+
+	<!-- Home -->
+
+	<div class="home">
+		<div class="home_inner">
+			<!-- Image artist: https://unsplash.com/@tanelah -->
+			<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="{% static 'landing/images/single.jpg' %}" data-speed="0.8"></div>
+			<div class="home_container">
+				<div class="home_content text-center">
+					<div class="home_subtitle">More About us</div>
+					<div class="home_title">Info</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Elements -->
+
+	<div class="elements">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					
+					<!-- Buttons -->
+					<div class="buttons">
+						<div class="elements_title">Make Harmony Yours</div>
+						<div class="buttons_container d-flex flex-row align-items-start justify-content-start flex-wrap">
+							<div class="button button_1 trans_200"><a href="/music/register">Register</a></div>
+							<div class="button button_2 trans_200"><a href="/music/login">Login</a></div>
+							<div class="button button_1 trans_200"><a href="/music/contact">Contact us</a></div>
+						</div>
+					</div>
+
+					<!-- Accordions & Tabs -->
+					<div class="acc_tabs">
+						<div class="elements_title">Harmony For Artists</div>
+						<div class="row acc_tabs_row">
+							
+							<!-- Accordions -->
+							<div class="col-lg-6">
+								<div class="accordions">
+
+									<!-- Accordion -->
+									<div class="accordion_container">
+										<div class="accordion d-flex flex-row align-items-center"><div>What's new ?</div></div>
+										<div class="accordion_panel">
+											<div>
+												<p>
+													<img src="https://img.icons8.com/color/24/000000/play-button-circled.png"> Play it your way <br>
+													<img src="https://img.icons8.com/color/24/000000/play-button-circled.png"> Playlists made easy <br>
+													<img src="https://img.icons8.com/color/24/000000/play-button-circled.png"> Make it yours <br>
+													<img src="https://img.icons8.com/color/24/000000/play-button-circled.png"> Save mobile data
+												</p>
+											</div>
+										</div>
+									</div>
+									
+									<!-- Accordion -->
+									<div class="accordion_container">
+										<div class="accordion d-flex flex-row align-items-center"><div>How do I create a playlist ?</div></div>
+										<div class="accordion_panel">
+											<div>
+												<p>
+													Playlists are a great way to save collections of music for your own listening and to share.
+													<br>
+													To create one :
+													<br>
+													1. Tap Your Library. <br>
+													2. Tap CREATE. <br>
+													3. Give your playlist a name. <br>
+													4. Start adding songs (and we’ll help you along).
+												</p>
+											</div>
+										</div>
+									</div>
+
+									<!-- Accordion -->
+									<div class="accordion_container">
+										<div class="accordion d-flex flex-row align-items-center active"><div>Is it only possible to shuffle play music ?</div></div>
+										<div class="accordion_panel">
+											<div>
+												<p>
+													Any playlist with the Shuffle icon can be listened to on Shuffle.
+													<br>
+Playlist without the Shuffle icon are available to Pick and Play. These are playlists you can play in any order and skip tracks as much as you like.
+												</p>
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+
+							<!-- Tabs -->
+							<div class="col-lg-6 tabs_col">
+								<div class="tabs">
+									<div class="tabs_container">
+										<div class="tabs d-flex flex-row align-items-center justify-content-start flex-wrap">
+											<div class="tab">Your Music</div>
+											<div class="tab">Your Queries</div>
+											<div class="tab active">Guidelines</div>
+										</div>
+										<div class="tab_panels">
+											<div class="tab_panel">
+												<div class="tab_panel_content">
+													<div class="tab_text">
+														<p>
+															Welcome to Harmony for Artists! We’ve created this guide to walk you through 
+															setting up your artist profile, customizing your presence, and growing your fanbase on Harmony.
+														</p>
+													</div>
+												</div>
+											</div>
+											<div class="tab_panel">
+												<div class="tab_panel_content">
+													<div class="tab_text">
+														<p>Can’t find what you’re looking for?
+															Contact us and share your queries with us. Leave us a message addressing your issue regarding anything on our music app.
+															We are ready to help you!
+														</p>
+													</div>
+												</div>
+											</div>
+											<div class="tab_panel active">
+												<div class="tab_panel_content">
+													<div class="tab_text">
+														<p>Harmony is an open platform for artistic expression. We believe in everyone’s right to share their voice. 
+															So generally, all creators and content are welcome on Harmony. 
+															However, in some scenarios where content is infringing, illegal, explicit, or hateful, it may be removed or filtered from Harmony.</p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Loaders -->
+					<div class="loaders">
+						<div class="elements_title">Active Listeners</div>
+						<div class="row loaders_row">
+
+							<!-- Loader -->
+							<div class="col-xl-3 col-md-6 loader_col">
+								<!-- Loader -->
+								<div class="loader_container text-center">
+									<div class="loader text-center" data-perc="0.90"></div>
+									<div class="loader_content">
+										<div class="loader_title">Live Music</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- Loader -->
+							<div class="col-xl-3 col-md-6 loader_col">
+								<!-- Loader -->
+								<div class="loader_container text-center">
+									<div class="loader text-center" data-perc="0.80"></div>
+									<div class="loader_content">
+										<div class="loader_title">Fans</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- Loader -->
+							<div class="col-xl-3 col-md-6 loader_col">
+								<!-- Loader -->
+								<div class="loader_container text-center">
+									<div class="loader text-center" data-perc="1.00"></div>
+									<div class="loader_content">
+										<div class="loader_title">Good Music</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- Loader -->
+							<div class="col-xl-3 col-md-6 loader_col">
+								<!-- Loader -->
+								<div class="loader_container text-center">
+									<div class="loader text-center" data-perc="0.75"></div>
+									<div class="loader_content">
+										<div class="loader_title">Crazy</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+					<!-- Milestones -->
+					<div class="milestones">
+						<div class="elements_title">Milestones</div>
+						<div class="row milestones_row">
+					
+							<!-- Milestone -->
+							<div class="col-xl-3 col-md-6 milestone_col">
+								<div class="milestone d-flex flex-row align-items-center justify-content-start">
+									<div class="milestone_icon"><img src="{% static 'landing/images/icon_1.svg' %}" alt="https://www.flaticon.com/authors/smashicons"></div>
+									<div class="milestone_content">
+										<div class="milestone_counter" data-end-value="{{usercount}}" data-sign-after="">0</div>
+										<div class="milestone_text">Users</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- Milestone -->
+							<div class="col-xl-3 col-md-6 milestone_col">
+								<div class="milestone d-flex flex-row align-items-center justify-content-start">
+									<div class="milestone_icon"><img src="{% static 'landing/images/icon_2.svg' %}" alt="https://www.flaticon.com/authors/smashicons"></div>
+									<div class="milestone_content">
+										<div class="milestone_counter" data-end-value="{{songcount}}">0</div>
+										<div class="milestone_text">Albums</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- Milestone -->
+							<div class="col-xl-3 col-md-6 milestone_col">
+								<div class="milestone d-flex flex-row align-items-center justify-content-start">
+									<div class="milestone_icon"><img src="{% static 'landing/images/icon_3.svg' %}" alt="https://www.flaticon.com/authors/smashicons"></div>
+									<div class="milestone_content">
+										<div class="milestone_counter" data-end-value="{{tourcount}}">0</div>
+										<div class="milestone_text">Concerts</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- Milestone -->
+							<div class="col-xl-3 col-md-6 milestone_col">
+								<div class="milestone d-flex flex-row align-items-center justify-content-start">
+									<div class="milestone_icon"><img src="{% static 'landing/images/icon_4.svg' %}" alt="https://www.flaticon.com/authors/smashicons"></div>
+									<div class="milestone_content">
+										<div class="milestone_counter" data-end-value="{{artistcount}}">0</div>
+										<div class="milestone_text">Artists</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+					<!-- Icon Boxes -->
+					<div class="icon_boxes">
+						<div class="elements_title">More Info</div>
+						<div class="row icon_boxes_row">
+							
+							<!-- Icon Box -->
+							<div class="col-lg-4">
+								<div class="icon_box">
+									<div class="ib_title_container d-flex flex-row align-items-center justify-content-start">
+										<div class="ib_icon"><img src="{% static 'landing/images/icon_1.svg' %}" alt="https://www.flaticon.com/authors/smashicons"></div>
+										<div class="ib_title">Live Music</div>
+									</div>
+									<div class="ib_text">
+										<p>Listen to the songs you love and thousands more. <br>
+										High quality music streaming, amazing playlists, no ad interruptions, music for every moment & every mood, easy on the ears.</p>
+									</div>
+								</div>
+							</div>
+
+							<!-- Icon Box -->
+							<div class="col-lg-4">
+								<div class="icon_box">
+									<div class="ib_title_container d-flex flex-row align-items-center justify-content-start">
+										<div class="ib_icon"><img src="{% static 'landing/images/icon_2.svg' %}" alt="https://www.flaticon.com/authors/smashicons"></div>
+										<div class="ib_title">Music Albums</div>
+									</div>
+									<div class="ib_text">
+										<p>
+											Go through the different music albums and pick any justifying your mood.
+											You can select songs of your choice in different genres or search your favorite
+											music at one click.
+										</p>
+									</div>
+								</div>
+							</div>
+
+							<!-- Icon Box -->
+							<div class="col-lg-4">
+								<div class="icon_box">
+									<div class="ib_title_container d-flex flex-row align-items-center justify-content-start">
+										<div class="ib_icon"><img src="{% static 'landing/images/icon_3.svg' %}" alt="https://www.flaticon.com/authors/smashicons"></div>
+										<div class="ib_title">New Singles</div>
+									</div>
+									<div class="ib_text">
+										<p>
+											Stay updated with the new singles released every week by different artists. 
+											Follow artists and learn about their latest releases from Harmony music app.
+										</p>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Footer -->
+
+	<footer class="footer">
+		<div class="copyright_bar">
+			<span><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="#" target="_blank">Harmony</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+</span>
+		</div>
+	</footer>
+</div>
+
+<script src="{% static 'landing/js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'landing/styles/bootstrap-4.1.2/popper.js' %}"></script>
+<script src="{% static 'landing/styles/bootstrap-4.1.2/bootstrap.min.js' %}"></script>
+<script src="{% static 'landing/plugins/greensock/TweenMax.min.js' %}"></script>
+<script src="{% static 'landing/plugins/greensock/TimelineMax.min.js' %}"></script>
+<script src="{% static 'landing/plugins/scrollmagic/ScrollMagic.min.js' %}"></script>
+<script src="{% static 'landing/plugins/greensock/animation.gsap.min.js' %}"></script>
+<script src="{% static 'landing/plugins/greensock/ScrollToPlugin.min.js' %}"></script>
+<script src="{% static 'landing/plugins/OwlCarousel2-2.2.1/owl.carousel.js' %}"></script>
+<script src="{% static 'landing/plugins/easing/easing.js' %}"></script>
+<script src="{% static 'landing/plugins/progressbar/progressbar.min.js' %}"></script>
+<script src="{% static 'landing/plugins/parallax-js-master/parallax.min.js' %}"></script>
+<script src="{% static 'landing/js/elements.js' %}"></script>
+</body>
+</html>

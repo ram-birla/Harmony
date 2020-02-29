@@ -1,0 +1,103 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title></title>
+  </head>
+  <body>
+      
+  <nav class="navbar navbar-expand-lg navbar-light bg-dark justify-content-between"">
+    <a class="navbar-brand" href="#" style="color:white;">HarMony<br>
+      <div style="font-size: small;"></div>
+    </a>
+    <a style="font-size: xx-large; color: white;"
+    href="/music/logout"  >Logout</a>
+  </nav>
+<br />
+<center>
+<h1>ADMIN PANEL</h1>
+<br/>
+<h4>DATA</h4>
+</center>
+<div class="container px-lg-5">
+    <div class="row mx-lg-n5">
+      <div class="col py-3 px-lg-5  bg-light">
+          <div class="shadow-lg p-3 mb-5 bg-white rounded" style="text-align: center;">
+            <img src="{% static '/home/img/bg-img/singer.png' %}" alt="ARTIST" height="200px" style="border-radius: 50%; "/><br/>
+            <br/>  
+            <p><h1>Artist</h1>
+            </p>  
+            <a class="btn btn-primary" href="/sadmin/artistdash" role="button">Manage Artists</a>
+            <!-- <a href="cp">CP</a> -->
+        </div>
+    </div>
+      <div class="col py-3 px-lg-5  bg-light" style="text-align: center;">
+        <div class="shadow-lg p-3 mb-5 bg-white rounded">
+            <img src="{% static '/home/img/bg-img/tour.jpg' %}" alt="Tours" height="200px" style="border-radius: 50%; "/><br/> 
+            <br/>
+            <p><h1>Tours</h1>
+            </p>  
+            <a class="btn btn-primary" href="/sadmin/tourdash" role="button">Manage Tours</a>
+            <!-- <a href="ooad">OOAD</a> -->
+        </div>
+    </div>
+    <div class="col py-3 px-lg-5  bg-light" style="text-align: center;">
+        <div class="shadow-lg p-3 mb-5 bg-white rounded">
+            <img src="{% static '/home/img/bg-img/song.png' %}" alt="Tours" height="200px" style="border-radius: 50%; "/><br/> 
+            <br/>
+            <p><h1>Songs</h1>
+            </p>  
+            <a class="btn btn-primary" href="/sadmin/songdash" role="button">Manage Song</a>
+            <!-- <a href="ooad">OOAD</a> -->
+        </div>
+    </div>
+    <div class="col py-3 px-lg-5  bg-light" style="text-align: center;">
+      <div class="shadow-lg p-3 mb-5 bg-white rounded">
+          <img src="{% static '/home/img/bg-img/song.png' %}" alt="Tours" height="200px" style="border-radius: 50%; "/><br/> 
+          <br/>
+          <p><h1>Follow System</h1>
+          </p>  
+          <a class="btn btn-primary" href="/sadmin/followdash" role="button">Manage Follower</a>
+          <!-- <a href="ooad">OOAD</a> -->
+      </div>
+  </div>
+  <div class="col py-3 px-lg-5  bg-light" style="text-align: center;">
+    <div class="shadow-lg p-3 mb-5 bg-white rounded">
+        <img src="{% static '/home/img/bg-img/song.png' %}" alt="Tours" height="200px" style="border-radius: 50%; "/><br/> 
+        <br/>
+        <p><h1>Add Language</h1>
+        </p>  
+        <a class="btn btn-primary" href="/sadmin/type" role="button">Add</a>
+        <!-- <a href="ooad">OOAD</a> -->
+    </div>
+</div>
+<div class="col py-3 px-lg-5  bg-light" style="text-align: center;">
+  <div class="shadow-lg p-3 mb-5 bg-white rounded">
+      <img src="{% static '/home/img/bg-img/song.png' %}" alt="Tours" height="200px" style="border-radius: 50%; "/><br/> 
+      <br/>
+      <p><h1>Add Genre</h1>
+      </p>  
+      <a class="btn btn-primary" href="/sadmin/genre" role="button">Add</a>
+      <!-- <a href="ooad">OOAD</a> -->
+  </div>
+</div>
+    </div>
+  </div>
+    
+        
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>
+

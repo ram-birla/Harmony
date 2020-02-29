@@ -41,7 +41,7 @@
                     <nav class="classy-navbar justify-content-between" id="oneMusicNav">
 
                         <!-- Nav brand -->
-                        <a href="#" class="nav-brand" style="color:beige">HARMONY</a>
+                        <a href="index.html" class="nav-brand" style="color:beige">HARMONY</a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -58,15 +58,22 @@
 
                             <!-- Nav Start -->
                             <div class="classynav">
-                                <ul>
-                                    <li><a href="#">Home</a></li>
-                                    <!-- <li><a href="/music/applypage">Apply for artist</a></li>    -->
-                                    <li><a href="/music/tourdetail">Events</a></li>
-                                    <li><a href="/music/logout">Logout</a></li>
-                                </ul>
-                            </div>
-                            <!-- Nav End -->
-
+                              <ul>
+                                {% if muser.isadmin == 2 %}
+                                <li><a href="/music/home">Home</a></li>
+                                <li><a href="/music/home/adsong">Upload Song</a></li>
+                                  <li><a href="/music/home/tourpage">Upload Tour</a></li>
+                                  <li><a href="/music/home/myprofile">My Profile</a></li>
+                              {% endif %}
+                              {% if muser.isadmin == 0 %}
+                                <li><a href="/music/home">Home</a></li>
+                                <li><a href="/music/home/applypage">Apply for artist</a></li>
+                                {% endif %}   
+                                <li><a href="/music/home/myplaylist/">My Playlist</a></li> 
+                                <li><a href="/music/artist">Artists</a></li>
+                                <li><a href="/music/tourdetail">Events</a></li>
+                                <li><a href="/music/logout">Logout</a></li>
+                            </ul>
                         </div>
                     </nav>
                 </div>
@@ -76,20 +83,18 @@
     <!-- ##### Header Area End ##### -->
 
     <!-- ##### Hero Area Start ##### -->
-
+    <section class="breadcumb-area bg-img bg-overlay" style="background-image: url('{% static "home/img/bg-img/breadcumb3.jpg" %}');">
+        <div class="bradcumbContent">
+            <p></p>
+            <h2>ARTISTS</h2>
+        </div>
+    </section>
+    
     <!-- ##### Buy Now Area Start ##### -->
     <section class="oneMusic-buy-now-area has-fluid bg-gray section-padding-100">
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section-heading style-2">
-                        <p>Tune into new</p>
-                        <h2>Listen By Artist</h2>
-                    </div>
-                </div>
-            </div>
+            
             <div class="row" >
-                <div class="features">
                 
                 {% for artists in artist %}
                 
@@ -101,13 +106,13 @@
                         <div class="load-more-btn text-center wow fadeInUp" data-wow-delay="300ms">
                             <h5>{{artists.artistname}}</h5>
                             <h6>{{artists.songcount}} Songs</h6>
-                        <button class="btn btn-dark">Playlist</button>   
-                        <button class="btn btn-danger">Follow</button>    
+                        <button class="btn btn-dark" onclick="window.location.href='{% url 'artistprofile' artists.artistid %}'">Playlist</button>   
+                        <!-- <button class="btn btn-danger" onclick="window.location.href='{% url 'artistprofile' artists.artistid %}'">Follow</button>     -->
                     </div>    
                     </div>
                 </div>
             {% endfor %}
-        </div>
+
     </div>
 </section>
 <!-- ##### Buy Now Area End ##### -->
@@ -120,7 +125,7 @@
             <div class="col-12 col-md-6">
                 <a href="#" style="color:beige">HARMONY</a>
                 <p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This is made <i class="fa fa-mic-o" aria-hidden="true"></i> by <a href="#" target="_blank">Ram Birla</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This is made <i class="fa fa-mic-o" aria-hidden="true"></i> by <a href="#" target="_blank">Harmony</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
             </div>
         </div>

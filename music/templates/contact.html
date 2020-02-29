@@ -1,0 +1,230 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Contact</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Mixtape template project">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="{% static 'landing/styles/bootstrap-4.1.2/bootstrap.min.css' %}">
+<link href="{% static 'landing/plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{% static 'landing/plugins/OwlCarousel2-2.2.1/owl.carousel.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'landing/plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'landing/plugins/OwlCarousel2-2.2.1/animate.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'landing/styles/contact.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'landing/styles/contact_responsive.css' %}">
+</head>
+<body>
+
+<div class="super_container">
+	
+	<!-- Header -->
+	<header class="header">
+		<div class="header_content d-flex flex-row align-items-center justify-content-center">
+			<div class="logo"><a href="#">Harmony</a></div>
+			<div class="log_reg">
+				<ul class="d-flex flex-row align-items-start justify-content-start">
+					<li><a href="/music/login">Login</a></li>
+					<li><a href="/music/register">Register</a></li>
+				</ul>
+			</div>
+			<nav class="main_nav">
+				<ul class="d-flex flex-row align-items-start justify-content-start">
+					<li><a href="/music/">Home</a></li>
+					<li><a href="/music/about">About us</a></li>
+					<li><a href="/music/info">Info</a></li>
+					<li class="active"><a href="#">Contact</a></li>
+				</ul>
+			</nav>
+			<div class="hamburger ml-auto">
+				<div class="d-flex flex-column align-items-end justify-content-between">
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<!-- Menu -->
+
+	<div class="menu">
+		<div>
+			<div class="menu_overlay"></div>
+			<div class="menu_container d-flex flex-column align-items-start justify-content-center">
+				<div class="menu_log_reg">
+					<ul class="d-flex flex-row align-items-start justify-content-start">
+						<li><a href="/music/login">Login</a></li>
+						<li><a href="/music/register">Register</a></li>
+					</ul>
+				</div>
+				<nav class="menu_nav">
+					<ul class="d-flex flex-column align-items-start justify-content-start">
+						<li><a href="/music/">Home</a></li>
+						<li><a href="/music/about">About us</a></li>
+						<li><a href="/music/info">Info</a></li>
+						<li><a href="#">Contact</a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+
+	<!-- Home -->
+
+	<div class="home">
+		<div class="home_inner">
+			<!-- Image artist: https://unsplash.com/@yoannboyer -->
+			<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="{% static 'landing/images/contact.jpg' %}" data-speed="0.8"></div>
+			<div class="home_container">
+				<div class="home_content text-center">
+					<div class="home_subtitle">Contact</div>
+					<div class="home_title">Developers</div>
+				</div>
+			</div> 
+		</div>
+	</div>
+
+	<!-- Contact -->
+	<div class="contact">
+		<div class="container">
+			<div class="row">
+				
+				<!-- Contact Info -->
+				<div class="col-lg-4 contact_col">
+					<div class="contact_info">
+						<div class="contact_text">
+							<img style="border-radius:50%;" src="{% static 'landing/images/ram1.jpeg' %}" height="250" width="250"/>
+							<br><br>
+							<div style="font-size: x-large;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ram Birla</div>
+						</div>
+						<div class="contact_info_list">
+							<ul>
+								<li class="d-flex flex-row align-items-start justify-content-start">
+									<div><div>Phone</div></div>
+									<div>+91 85169 71855</div>
+								</li>
+								<li class="d-flex flex-row align-items-start justify-content-start">
+									<div><div>E-mail</div></div>
+									<div>rambirla02@gmail.com</div>
+								</li>
+							</ul>
+						</div>
+						<div class="social">
+							<ul class="d-flex flex-row align-items-center justify-content-start">
+								<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+								<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+								<li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+							</ul>
+						</div>
+					</div>
+                </div>
+                
+				<!-- Contact Info -->
+				<div class="col-lg-4 contact_col">
+					<div class="contact_info">
+						<div class="contact_text">
+							<img style="border-radius:50%;" src="{% static 'landing/images/pragya.jpeg' %}" height="250" width="250"/>
+							<br><br>
+							<div style="font-size: x-large;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pragyansh Nigam</div>
+						</div>
+						<div class="contact_info_list">
+							<ul>
+								<li class="d-flex flex-row align-items-start justify-content-start">
+									<div><div>Phone</div></div>
+									<div>+91 82249 81815</div>
+								</li>
+								<li class="d-flex flex-row align-items-start justify-content-start">
+									<div><div>E-mail</div></div>
+									<div>nigampragyansh@gmail.com</div>
+								</li>
+							</ul>
+						</div>
+						<div class="social">
+							<ul class="d-flex flex-row align-items-center justify-content-start">
+								<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+								<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+								<li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+							</ul>
+						</div>
+					</div>
+                </div>
+
+				<!-- Contact Info -->
+				<div class="col-lg-4 contact_col">
+					<div class="contact_info">
+						<div class="contact_text">
+							<img style="border-radius:50%;" src="{% static 'landing/images/p.jpeg' %}" height="250" width="250"/>
+							<br><br>
+							<div style="font-size: x-large;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Prakhar Adgale</div>
+						</div>
+						<div class="contact_info_list">
+							<ul>
+								<li class="d-flex flex-row align-items-start justify-content-start">
+									<div><div>Phone</div></div>
+									<div>+91 83050 26105</div>
+								</li>
+								<li class="d-flex flex-row align-items-start justify-content-start">
+									<div><div>E-mail</div></div>
+									<div>prakhar.adgale@gmail.com</div>
+								</li>
+							</ul>
+						</div>
+						<div class="social">
+							<ul class="d-flex flex-row align-items-center justify-content-start">
+								<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+								<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+								<li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+							</ul>
+						</div>
+					</div>
+                </div>
+			</div>
+			<br><br><br>
+			<div class="row">
+                <!-- Contact Form -->
+				<div class="col-lg-12">
+					<div class="contact_form_container">
+						<div class="contact_title">Send us a message</div>
+						<form action="#" class="contact_form" id="contact_form">
+							<input type="text" class="contact_input" placeholder="Name" required="required">
+							<input type="email" class="contact_input" placeholder="E-mail" required="required">
+							<input type="text" class="contact_input" placeholder="Subject">
+							<textarea class="contact_input contact_textarea" placeholder="Message" required="required"></textarea>
+							<button class="contact_button">Send Message</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Footer -->
+
+	<footer class="footer">
+		<div class="copyright_bar">
+			<span><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="#" target="_blank">Harmony</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+</span>
+		</div>
+	</footer>
+</div>
+<script src="{% static 'landing/js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'landing/styles/bootstrap-4.1.2/popper.js' %}"></script>
+<script src="{% static 'landing/styles/bootstrap-4.1.2/bootstrap.min.js' %}"></script>
+<script src="{% static 'landing/plugins/greensock/TweenMax.min.js' %}"></script>
+<script src="{% static 'landing/plugins/greensock/TimelineMax.min.js' %}"></script>
+<script src="{% static 'landing/plugins/scrollmagic/ScrollMagic.min.js' %}"></script>
+<script src="{% static 'landing/plugins/greensock/animation.gsap.min.js' %}"></script>
+<script src="{% static 'landing/plugins/greensock/ScrollToPlugin.min.js' %}"></script>
+<script src="{% static 'landing/plugins/OwlCarousel2-2.2.1/owl.carousel.js' %}"></script>
+<script src="{% static 'landing/plugins/easing/easing.js' %}"></script>
+<script src="{% static 'landing/plugins/progressbar/progressbar.min.js' %}"></script>
+<script src="{% static 'landing/plugins/parallax-js-master/parallax.min.js' %}"></script>
+<script src="{% static 'landing/plugins/jPlayer/jquery.jplayer.min.js' %}"></script>
+<script src="{% static 'landing/plugins/jPlayer/jplayer.playlist.min.js' %}"></script>
+<script src="{% static 'landing/js/contact.js' %}"></script>
+</body>
+</html>

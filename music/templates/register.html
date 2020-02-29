@@ -28,13 +28,61 @@
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
+<link rel="icon" href="{% static 'home/img/core-img/favicon.ico' %}">
+
+<!-- Stylesheet -->
+<link rel="stylesheet" href="{% static 'home/style.css' %}">
+
 </head>
 <body style="background-image: url('{% static "artform/images/bgform3.jpeg" %}'); background-attachment: fixed; background-repeat: no-repeat; background-size: 1750px 1000px;">
 
+    <header class="header-area">
+        <!-- Navbar Area -->
+        <div class="oneMusic-main-menu">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Menu -->
+                    <nav class="classy-navbar justify-content-between" id="oneMusicNav">
+
+                        <!-- Nav brand -->
+                        <a href="#" class="nav-brand" style="color:beige">HARMONY</a>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+
+                            <!-- Close Button -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Nav Start -->
+                            <div class="classynav">
+                                <ul>
+                                    <li><a href="/music">Home</a></li>
+                                    <li><a href="/music/about">About us</a></li>
+						<li><a href="/music/info">Info</a></li>
+						<li><a href="/music/contact">Contact</a></li>
+                                </ul>
+
+                               
+                            </div>
+                            <!-- Nav End -->
+
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
 
 	<div class="container-contact100">
 		<div class="wrap-contact100">
-			<form class="contact100-form validate-form" method="post" action="/music/reg">
+			<form class="contact100-form validate-form" method="post" enctype="multipart/form-data" action="/music/reg">
                 {% csrf_token %}
                 <span class="contact100-form-title">
                     Sign up
@@ -49,6 +97,11 @@
                                 <input class="input100" type="text" name="email" placeholder="Enter your email addess">
                             <span class="focus-input100"></span>
                             </div>  
+                            <div class="wrap-input100 validate-input" data-validate = "valid image">
+                                <span class="label-input100">Your Image</span>
+                                <input class="input100" type="file" name="image" accept="image" placeholder="Upload your Image">
+                                <span class="focus-input100"></span>
+                            </div>
                             <div class="wrap-input100 validate-input" data-validate = "Name is required">
                                 <span class="label-input100">Contact</span>
                                 <input class="input100" type="text" name="phone" placeholder="Enter your phone number">
@@ -95,6 +148,33 @@
     <!-- JS -->
  
     <div id="dropDownSelect1"></div>
+
+    <footer class="footer-area">
+        <div class="container">
+            <div class="row d-flex flex-wrap align-items-center">
+                <div class="col-12 col-md-6">
+                    <a href="#" style="color:beige">HARMONY</a>
+                    <p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This is made <i class="fa fa-mic-o" aria-hidden="true"></i> by <a href="#" target="_blank">Harmony</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- ##### Footer Area Start ##### -->
+
+    <!-- ##### All Javascript Script ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="{% static 'home/js/jquery/jquery-2.2.4.min.js' %}"></script>
+    <!-- Popper js -->
+    <script src="{% static 'home/js/bootstrap/popper.min.js' %}"></script>
+    <!-- Bootstrap js -->
+    <script src="{% static 'home/js/bootstrap/bootstrap.min.js' %}"></script>
+    <!-- All Plugins js -->
+    <script src="{% static 'home/js/plugins/plugins.js' %}"></script>
+    <!-- Active js -->
+    <script src="{% static 'home/js/active.js' %}"></script>
+
 
     <!--===============================================================================================-->
         <script src="{% static 'artform/vendor/jquery/jquery-3.2.1.min.js' %}"></script>

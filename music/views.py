@@ -3,8 +3,43 @@ from django.http import HttpResponse
 from django.contrib import messages
 from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.models import User, auth
-from . models import Muser,Artist,Song,Songgenre,Songtype,Tour,Playlist
+from . models import Muser,Artist,Song,Songgenre,Songtype,Tour,Playlist,Follow
+import datetime 
+import random
 # Create your views here.
+def landingpage(req):
+    return render(req,"landing.html")
+
+def aboutpage(req):
+    songcount = Song.objects.all().count()
+    tourcount = Tour.objects.all().count()
+    usercount = User.objects.all().count()
+    artistcount = Artist.objects.all().count()
+    context = {
+        'songcount':songcount,
+        'tourcount':tourcount,
+        'usercount':usercount,
+        'artistcount':artistcount
+    }
+    
+    return render(req,"about.html",context)
+
+def infopage(req):
+    songcount = Song.objects.all().count()
+    tourcount = Tour.objects.all().count()
+    usercount = User.objects.all().count()
+    artistcount = Artist.objects.all().count()
+    context = {
+        'songcount':songcount,
+        'tourcount':tourcount,
+        'usercount':usercount,
+        'artistcount':artistcount
+    }
+    return render(req,"info.html",context)
+
+def contactpage(req):
+    return render(req,"contact.html")
+
 def register(req):
     return render(req,"register.html")
 
@@ -19,6 +54,7 @@ def reg(request):
         password1 = request.POST['pass1']
         password2 = request.POST['pass2']                                       
         contact = request.POST['phone']
+        image = request.FILES.get('image')
         # category = request.POST['type']
         print(username,email,contact)  
         
@@ -28,7 +64,7 @@ def reg(request):
                 return redirect('/music/register')
             else:
                 user = User.objects.create_user(username=username, email=email, password = password1, first_name = password1, last_name = name)
-                muser = Muser(user_id=user.id, contact=contact)
+                muser = Muser(user_id=user.id, contact=contact,image=image)
                 print('creating user....')
                 user.save()
                 muser.save()
@@ -66,11 +102,15 @@ def login(request):
                     return redirect('/sadmin/')
                 elif muser.isadmin == 2:
                     auth.login(request,user)
+                    print("0")
                     c = muser.lcount + 1
+                    print("1")
                     muser.lcount = c
+                    print("2")
                     print(muser.lcount)
                     muser.save()
-                    return redirect('/music/artisthome')
+                    print("3")
+                    return redirect('/music/home')
                 else:
                     auth.login(request,user)
                     c = muser.lcount + 1
@@ -97,35 +137,39 @@ def homePage(req):
     # print(req.user.id)
     songtypes = Songtype.objects.all()
     songgenres = Songgenre.objects.all()
-    songs = Song.objects.all()
+    songs = Song.objects.order_by('-clickCount')[0:10]
+    # artist = Artist.objects.order_by('-songcount')[0:2]
+    top = Artist.objects.order_by('-fcount')[0]
+    artist = Artist.objects.order_by('-fcount')[0:10]
+    tops = Song.objects.order_by('-clickCount')[0]
+    muser = Muser.objects.get(user = req.user.id)
+       
     context = {'songtype' : songtypes,
         'songgenre' : songgenres,
-        'song': songs
+        'song': songs,
+        'muser':muser,
+        'artist':artist,
+        'top':top,
+        'tops':tops
     }
     return render(req,'home.html',context)
 
-def artisthome(req):
-    songtypes = Songtype.objects.all()
-    context = {'songtype' : songtypes
-    }
-    return render(req,'artisthome.html',context)
 
 def upload(request):
-    
     if not request.user.is_authenticated:
         return redirect('/music/register')
     else:
+        muser = Muser.objects.get(user = request.user.id)
         songtypes = Songtype.objects.all()
         songgenres = Songgenre.objects.all()
         context = {'songtypes' : songtypes,
         'songgenres' : songgenres,
+        'muser':muser
         }
         return render(request,"upload.html",context)
 
 def simple_upload(req):
-    uid=req.user.id
-    song = User.objects.get(id=uid)
-    print(uid,song)
+    user = User.objects.get(id = req.user.id)
     if req.method == 'POST' and req.FILES['myfile']:
         songtype = req.POST['stype']
         songgenre = req.POST['sgenre']
@@ -134,45 +178,67 @@ def simple_upload(req):
         print(myfile)
         st = Songtype.objects.get(name=songtype)
         sg = Songgenre.objects.get(name=songgenre)
-        
-        # fs = FileSystemStorage()
-        # document = fs.save(myfile.name,myfile)
-        # uploaded_file_url = fs.url(document)
-        song = Song(user=song,songname = (myfile.name).split('.')[0],songtype = st,songgenre = sg,document = myfile)
+        muser = Muser.objects.get(user = user) 
+        artist = Artist.objects.get(muser = muser)
+        print(artist)
+        c = artist.songcount + 1
+        artist.songcount = c
+        print(artist.songcount)
+        artist.save()
+        song = Song(artist=artist,songname = (myfile.name).split('.')[0],songtype = st,songgenre = sg,document = myfile)
         song.save()
-        return render(req,'upload.html',{
-            'file_status' : 'uploaded'
+        return redirect('/music/home/myprofile/#mysong')
+
+    return render(req,'upload.html',{
+            'file_status' : 'not uploaded'
         })
 
-    return render(req,'upload.html')
-
 def tourpage(req):
-    return render(req,'tour.html')
+    muser = Muser.objects.get(user = req.user.id)
+    
+    return render(req,'tour.html',{'muser':muser})
 
 def toursub(req):
     uid=req.user.id
-    tour = User.objects.get(id=uid)
-    print(uid,tour)
+    user = User.objects.get(id=uid)
+    print(uid,user)
     if req.method == 'POST':
         eventname = req.POST['eventname']
         city = req.POST['city']
         day = req.POST['day']
         date = req.POST['date']
+        time = req.POST.get('time')
+        print(time)
         address = req.POST['address']
-        image = req.POST['photo']
+        image = req.FILES['image']
         print(eventname,city,day,date)
-
-        tour = Tour(user=tour,city = city, date = date,day=day,eventname=eventname,address=address,tourimage=image)
+        tour = Tour(user=user,city = city, date = date,day=day,time=time,eventname=eventname,address=address,tourimage=image)
         tour.save()
-        return render(req,'tour.html',{
-            'file_status' : 'uploaded'
+        # return render(req,'tour.html',{
+        #     'file_status' : 'uploaded'
+        # })
+        return redirect('/music/home/myprofile/#mytour')
+
+    return render(req,'tour.html',{
+            'file_status' : 'not uploaded'
         })
 
-    return render(req,'tour.html')
-
 def tourdetails(req):
-    tours = Tour.objects.all()
-    context = { 'tour' : tours}
+    now = datetime.datetime.now().date()
+    tours = Tour.objects.filter(status=0)
+    for t in tours:
+        tour = Tour.objects.get(tourid = t.tourid)
+        print((tour.date - now).days)
+        if (tour.date - now).days < 0:
+            tour.status = 1
+            tour.save()
+   
+    
+    tours = Tour.objects.filter(status=0)
+    muser = Muser.objects.get(user = req.user.id)
+    context = { 'tour' : tours,
+        'muser': muser
+    }
     return render(req,'tourpage.html',context) 
 
  
@@ -180,14 +246,16 @@ def applypage(req):
     if not req.user.is_authenticated:
         return redirect('/music/login')
     else:
+        muser = Muser.objects.get(user = req.user.id)
         songtypes = Songtype.objects.all()
-        context = {'songtypes' : songtypes
+        context = {'songtypes' : songtypes,
+        'muser':muser
         }
     return render(req,'apply.html',context)
 
 def applysub(req):
     uid=req.user.id
-    artist = User.objects.get(id=uid)
+    artist = Muser.objects.get(user=uid)
     if req.method == 'POST' and req.FILES['samplefile']:
         name = req.POST['name']
         age = req.POST['age']
@@ -196,7 +264,7 @@ def applysub(req):
         image = req.FILES['image']
         st = Songtype.objects.get(name=songtype)
        
-        artist = Artist(user=artist,artistname = name,age=age,songtype=st,image=image,sampleaudio=samplefile)
+        artist = Artist(muser=artist,artistname = name,age=age,songtype=st,image=image,sampleaudio=samplefile)
         artist.save()
         return render(req,'apply.html',{
             'file_status' : 'uploaded'
@@ -206,33 +274,262 @@ def applysub(req):
 
 def artistpage(req):
     artists = Artist.objects.filter(status=1)
-    context = {'artist': artists}
+    muser = Muser.objects.get(user = req.user.id)
+    context = {'artist': artists,
+        'muser':muser
+    }
     return render(req,'artist.html',context)
 
 def genre(req, stype_id):
     songtype = Songtype.objects.get(id=stype_id)
     songgenres = Songgenre.objects.filter(songtype=songtype)
+    muser = Muser.objects.get(user = req.user.id)
     context = {
         'songgenre': songgenres,
+        'muser':muser
     }
     return render(req,'genre.html',context)
 
 def musicpage(req, sgenre_id):
     songgenre = Songgenre.objects.get(id=sgenre_id)
     songs = []
-    for songgenres in songgenre:
-        song = Song.objects.filter(songgenre=songgenres)
-        for s in song:
-            songs.append(s)
+    song = Song.objects.filter(songgenre=songgenre)
+    muser = Muser.objects.get(user = req.user.id)
+   
     context={
-        'songs':songs,
+        'songs':song,
+        'muser':muser,
+        'songgenre':songgenre
     }
-
-    print(songs)    
+    
+    print(song[0].document)
+    
     return render(req,'music.html',context)
 
-def artistprofile(req):
-    return render(req,'artprofile.html')
+def artistprofile(req, artist_id):
+    if not req.user.is_authenticated:
+        return redirect('/music/login')
+    else:
+        user = User.objects.get(id = req.user.id)
+        muser = Muser.objects.get(user = req.user.id)
+        artist = Artist.objects.get(artistid = artist_id)
+        followercount = Follow.objects.filter(following = artist).count()
+        print(artist)
+        try:
+            ifollow = Follow.objects.get(following = artist, follower = user)
+            print(ifollow)
+            if ifollow:
+                isfollow = True 
+        except:
+            isfollow = False
+            print('False--------------  ------------')
+
+        # print(isfollow)
+        song = Song.objects.filter(artist = artist)
+        context = {
+            'artist':artist,
+            'songs':song,
+            'muser':muser,
+            'isfollow':isfollow,
+            'followercount':followercount
+        }
+        return render(req,'artprofile.html',context)
 
 def myplaylist(req):
-    return render(req,'myplay.html')
+    if not req.user.is_authenticated:
+        return redirect('/music/login')
+    else:
+        muser = Muser.objects.get(user = req.user.id)
+        print(muser)
+        song = Playlist.objects.filter(user = req.user.id)
+        songcount = Playlist.objects.filter(user = req.user.id).count()
+        context = {
+            'muser':muser,
+            'song':song,
+            'songcount':songcount,
+        }
+        return render(req,'myplay.html',context)
+
+def myprofile(request):
+    print('Hello')
+    if not request.user.is_authenticated:
+        return redirect('/music/login')
+    else:
+        print(request.user.id)
+        muser = Muser.objects.get(user = request.user.id)
+        print(muser)
+        artist = Artist.objects.get(muser = muser)
+        print(artist)
+        tour = Tour.objects.filter(user = request.user.id)
+        tcount = Tour.objects.filter(user = request.user.id).count()
+        song = Song.objects.filter(artist = artist)
+        print(artist.image)
+        for t in tour:
+            print(t.eventname)
+        for s in song:
+            print(s.songname)
+
+        context ={
+            'artists':artist,
+            'tours':tour,
+            'songs':song,
+            'muser':muser,
+            'tcount':tcount
+        }
+        return render(request,'myprofile.html',context)
+
+def follow(req, artist_id):
+    uid = req.user.id
+    user = User.objects.get(id = uid)
+    artist = Artist.objects.get(artistid = artist_id)
+
+    print(user,artist)
+    #instance upload
+    follow = Follow(following = artist, follower = user)
+    follow.save()
+    return HttpResponse("DONE")
+
+def unfollow(req, artist_id):
+    uid = req.user.id
+    user = User.objects.get(id = uid)
+    artist = Artist.objects.get(artistid = artist_id)
+
+    print(user,artist)
+    #instance delete
+    follower = Follow.objects.get(following = artist, follower = user)
+    follower.delete()
+    return HttpResponse("UNFOLLOWED")
+
+def addToPlaylist(req, song_id):
+    print(song_id)
+    user = User.objects.get(id = req.user.id)
+    sng = Song.objects.get(songid = song_id)
+    try:
+        print("ghussa")
+        s = Playlist.objects.get(user = user,song=sng)
+        print(s.id)
+        if s.song == sng:
+            
+            print("already added")
+            return HttpResponse("already added")
+        else:
+            play = Playlist(user=user,song=sng)
+            play.save()    
+    except:
+        play = Playlist(user=user,song=sng)
+        play.save()
+    return HttpResponse('Added')
+
+def removeFromPlaylist(req, song_id):
+    print(song_id)
+    user = User.objects.get(id = req.user.id)
+    song = Song.objects.get(songid = song_id)
+    play = Playlist.objects.get(user = user,song=song)
+    play.delete()
+    return HttpResponse('Deleted')
+
+def increaseClickCount(req, song_id):
+    print(song_id)
+    song = Song.objects.get(songid = song_id)
+    song.inClickCount()
+    song.save()
+    return HttpResponse(song.clickCount)
+
+# def search(request):
+#     if request.method == 'GET':
+#         query= request.GET.get('q')
+
+#         submitbutton= request.GET.get('submit')
+
+#         if query is not None:
+#             results = Song.objects.filter(songname=query).distinct()
+            
+#             context={'results': results,
+#                      'submitbutton': submitbutton}
+
+#             return render(request, 'music.html', context)
+
+#         else:
+#             return render(request, 'search/search.html')
+
+#     else:
+#         return render(request, 'search/search.html')
+
+def sshuffle(req, sgenre_id):
+    muser = Muser.objects.get(user = req.user.id)
+    songgenre = Songgenre.objects.get(id=sgenre_id)
+    song = Song.objects.filter(songgenre=songgenre)
+    mylist = list(song)
+    for item in mylist:
+        print(item.songid)
+    print(mylist)
+    random.shuffle(mylist)
+    for item in mylist:
+        print(item.songid)
+    print(mylist)
+    song = mylist
+    context = {
+        'muser':muser,
+        'songs':song,
+        'songgenre':songgenre
+    }
+    return render(req,'music.html',context)
+
+def ashuffle(req, artist_id):
+    artist = Artist.objects.get(artistid = artist_id)
+    song = Song.objects.filter(artist = artist)
+    user = User.objects.get(id = req.user.id)
+    muser = Muser.objects.get(user = req.user.id)
+    followercount = Follow.objects.filter(following = artist).count()
+    print(artist)
+    try:
+        ifollow = Follow.objects.get(following = artist, follower = user)
+        print(ifollow)
+        if ifollow:
+            isfollow = True 
+    except:
+        isfollow = False
+        print('False--------------  ------------')
+
+    mylist = list(song)
+    for item in mylist:
+        print(item.songid)
+    print(mylist)
+    random.shuffle(mylist)
+    for item in mylist:
+        print(item.songid)
+    print(mylist)
+    song = mylist
+    context = {
+        'artist':artist,
+        'songs':song,
+        'muser':muser,
+        'isfollow':isfollow,
+        'followercount':followercount
+        
+    }
+    return render(req,'artprofile.html',context)
+
+def myshuffle(req):  
+    muser = Muser.objects.get(user = req.user.id)
+    print(muser)
+    song = Playlist.objects.filter(user = req.user.id)
+    songcount = Playlist.objects.filter(user = req.user.id).count()
+    mylist = list(song)
+    for item in mylist:
+        print(item.song.songid)
+    print(mylist)
+    random.shuffle(mylist)
+    for item in mylist:
+        print(item.song.songid)
+    print(mylist)
+    song = mylist
+    
+    context = {
+        'muser':muser,
+        'song':song,
+        'songcount':songcount,
+    }
+    return render(req,'myplay.html',context)
+
+

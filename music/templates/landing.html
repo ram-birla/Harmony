@@ -1,0 +1,201 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Home</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Mixtape template project">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="{% static 'landing/styles/bootstrap-4.1.2/bootstrap.min.css' %}">
+<link href="{% static 'landing/plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{% static 'landing/plugins/OwlCarousel2-2.2.1/owl.carousel.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'landing/plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'landing/plugins/OwlCarousel2-2.2.1/animate.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'landing/styles/main_styles.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'landing/styles/responsive.css' %}">
+</head>
+<body>
+
+<div class="super_container">
+	
+	<!-- Header -->
+	<header class="header">
+		<div class="header_content d-flex flex-row align-items-center justify-content-center">
+			<div class="logo"><a href="#">Harmony</a></div>
+			<div class="log_reg">
+				<ul class="d-flex flex-row align-items-start justify-content-start">
+					<li><a href="/music/login">Login</a></li>
+					<li><a href="/music/register">Register</a></li>
+				</ul>
+			</div>
+			<nav class="main_nav">
+				<ul class="d-flex flex-row align-items-start justify-content-start">
+					<li class="active"><a href="#">Home</a></li>
+					<li><a href="/music/about">About us</a></li>
+					<li><a href="/music/info">Info</a></li>
+					<li><a href="/music/contact">Contact</a></li>
+				</ul>
+			</nav>
+			<div class="hamburger ml-auto">
+				<div class="d-flex flex-column align-items-end justify-content-between">
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<!-- Menu -->
+
+	<div class="menu">
+		<div>
+			<div class="menu_overlay"></div>
+			<div class="menu_container d-flex flex-column align-items-start justify-content-center">
+				<div class="menu_log_reg">
+					<ul class="d-flex flex-row align-items-start justify-content-start">
+						<li><a href="/music/login">Login</a></li>
+						<li><a href="/music/register">Register</a></li>
+					</ul>
+				</div>
+				<nav class="menu_nav">
+					<ul class="d-flex flex-column align-items-start justify-content-start">
+						<li><a href="#">Home</a></li>
+						<li><a href="/music/about">About us</a></li>
+						<li><a href="/music/info">Info</a></li>
+						<li><a href="/music/contact">Contact</a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+
+    <!-- Home -->
+
+	<div class="home">
+		<div class="home_slider_container">
+			
+			<!-- Home Slider -->
+			<div class="owl-carousel owl-theme home_slider">
+				
+				<!-- Slide -->
+				<div class="owl-item">
+					<div class="background_image" style="background-image:url({% static 'landing/images/index.jpg' %})"></div>
+					<div class="home_container">
+						<div class="home_container_inner d-flex flex-column align-items-center justify-content-center">
+							<div class="home_content text-center">
+								<div class="home_subtitle">New single release</div>
+								<div class="home_title"><h1>Promote Your Music</h1></div>
+								<div class="home_link"><a href="/music/register">JOIN US</a></div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Slide -->
+				<div class="owl-item">
+					<div class="background_image" style="background-image:url({% static 'landing/images/bg1.jpg' %})"></div>
+					<div class="home_container">
+						<div class="home_container_inner d-flex flex-column align-items-center justify-content-center">
+							<div class="home_content text-center">
+								<div class="home_subtitle">New single release</div>
+								<div class="home_title"><h1>Make Harmony Yours</h1></div>
+
+								<div class="home_link"><a href="/music/login">LISTEN NOW</a></div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Slide -->
+				<div class="owl-item">
+					<div class="background_image" style="background-image:url({% static 'landing/images/bg4.jpg' %})"></div>
+					<div class="home_container">
+						<div class="home_container_inner d-flex flex-column align-items-center justify-content-center">
+							<div class="home_content text-center">
+								<div class="home_subtitle">New single release</div>
+								<div class="home_title"><h1>Pick Your Artist</h1></div>
+								<div class="home_link"><a href="/music/login">Artists</a></div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+    </div>
+    
+	<br><br><br><br><br><br><br>
+    <!-- Artist -->
+
+	<div class="artist">
+		<div class="container">
+			<div class="row">
+
+				<!-- Artist Image -->
+				<div class="col-lg-4 artist_image_col">
+					<div class="artist_image">
+						<img src="{% static 'landing/images/artist.png' %}" alt="">
+					</div>
+				</div>
+
+				<!-- Artist Content -->
+				<div class="col-lg-7 offset-lg-1">
+					<div class="artist_content">
+						<div class="section_title_container">
+							<div class="section_subtitle">Who are we ?</div>
+							<div class="section_title"><h1>The Harmony</h1></div>
+						</div>
+						<div class="artist_text">
+							<p>Harmony is the world's fastest growing music app, helping newbie musicians worldwide 
+							   connect and collaborate with top music professionals. This is the one-stop music app for the latest to the greatest songs you love.
+							   Harmony offers you free, unlimited online access to all your favourite Hindi Songs, Bollywood Music, Regional Music & English Hits.
+								<br><br>
+								Listen to songs of famous artists like Arijit Singh, AR Rahman, Badshah, Guru Randhawa, Lata Mangeshkar, Mohd. Rafi, Neha Kakkar, Kishore Kumar, Shreya Ghoshal, Udit Narayan, Alka Yagnik and others. 
+								Listen to English tracks of popular artists like Ariana Grande, Jonas Brothers, Maroon 5, Martin Garrix, Ed Sheeran, Charlie Puth, Sia, Drake, Eminem, Enrique Iglesias, Camila Cabello, Justin Bieber.
+								<br><br>
+								Still reading? You’re a true music lover!
+								<br><br>
+								Explore interesting music and listen to Bollywood songs, featured artists, latest trending songs, popular playlists and more on Harmony app. <a href="#">Download</a> the app to play music on the go.
+							</p>
+						</div>
+						<br><br>
+						<iframe width="650" height="190" src="https://www.youtube.com/embed/QnE3hAxRsDA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    
+	<!-- Footer -->
+
+    	<!-- Footer -->
+
+	<footer class="footer">
+		<div class="copyright_bar">
+			<span><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="#" target="_blank">Harmony</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+</span>
+		</div>
+	</footer>
+</div>
+
+<script src="{% static 'landing/js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'landing/styles/bootstrap-4.1.2/popper.js' %}"></script>
+<script src="{% static 'landing/styles/bootstrap-4.1.2/bootstrap.min.js' %}"></script>
+<script src="{% static 'landing/plugins/greensock/TweenMax.min.js' %}"></script>
+<script src="{% static 'landing/plugins/greensock/TimelineMax.min.js' %}"></script>
+<script src="{% static 'landing/plugins/scrollmagic/ScrollMagic.min.js' %}"></script>
+<script src="{% static 'landing/plugins/greensock/animation.gsap.min.js' %}"></script>
+<script src="{% static 'landing/plugins/greensock/ScrollToPlugin.min.js' %}"></script>
+<script src="{% static 'landing/plugins/OwlCarousel2-2.2.1/owl.carousel.js' %}"></script>
+<script src="{% static 'landing/plugins/easing/easing.js' %}"></script>
+<script src="{% static 'landing/plugins/progressbar/progressbar.min.js' %}"></script>
+<script src="{% static 'landing/plugins/parallax-js-master/parallax.min.js' %}"></script>
+<script src="{% static 'landing/plugins/jPlayer/jquery.jplayer.min.js' %}"></script>
+<script src="{% static 'landing/plugins/jPlayer/jplayer.playlist.min.js' %}"></script>
+<script src="{% static 'landing/js/custom.js' %}"></script>
+</body>
+</html>

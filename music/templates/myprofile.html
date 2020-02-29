@@ -1,0 +1,219 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="keywords" content="Classy Audio Player Widget Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+    Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+            function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- //for-mobile-apps -->
+    <link href="{% static 'mplayer/css/style.css' %}" rel="stylesheet" type="text/css" media="all" />
+    <!-- js -->
+    <script src="{% static 'mplayer/js/jquery-1.11.1.min.js' %}"></script>
+    <!-- //js -->
+    <link href="//fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>HarMony</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'home/img/core-img/favicon.ico' %}">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{% static 'home/style.css' %}">
+    <link rel="stylesheet" href="{% static 'mplayer/css/jplayer.blue.monday.min.css' %}"  type="text/css" />
+    
+        
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="lds-ellipsis">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+    <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+        <!-- Navbar Area -->
+        <div class="oneMusic-main-menu">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Menu -->
+                    <nav class="classy-navbar justify-content-between" id="oneMusicNav">
+
+                        <!-- Nav brand -->
+                        <a href="index.html" class="nav-brand" style="color:beige">HARMONY</a>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+
+                            <!-- Close Button -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Nav Start -->
+                            <div class="classynav">
+                              <ul>
+                                {% if muser.isadmin == 2 %}
+                                  <li><a href="/music/home">Home</a></li>
+                                  <li><a href="/music/home/adsong">Upload Song</a></li>
+                                    <li><a href="/music/home/tourpage">Upload Tour</a></li>
+                                    <li><a href="/music/home/myprofile">My Profile</a></li>
+                                {% endif %}
+                                {% if muser.isadmin == 0 %}
+                                  <li><a href="/music/home">Home</a></li>
+                                  <li><a href="/music/applypage">Apply for artist</a></li>   
+                                  {% endif %}
+                                  <li><a href="/music/home/myplaylist">My Playlist</a></li>
+                                  <li><a href="/music/artist">Artists</a></li>
+                                  <li><a href="/music/tourdetail">Events</a></li>
+                                  <li><a href="/music/logout">Logout</a></li>
+                              </ul>
+
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ##### Header Area End ##### -->
+
+    <!-- ##### Breadcumb Area Start ##### -->
+    <section class="breadcumb-area bg-img bg-overlay" style="background-image: url('{% static "home/img/bg-img/breadcumb3.jpg" %}');">
+        <div class="bradcumbContent">
+            <p></p>
+            <h2>{{artists.artistname}}</h2>
+        </div>
+    </section>
+    <!-- ##### Breadcumb Area End ##### -->
+
+    <section class="oneMusic-buy-now-area has-fluid bg-gray section-padding-100">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading style-2">
+                    <img src="/media/{{artists.image}}" class="card-img-top img-thumbnail mt-2 mx-auto" alt="Responsive image" style="height: 12rem; width:12rem; border-radius: 50%;">
+                        <h6 style="color:black;"><b>{{artists.songcount}} Songs, {{tcount}} Tours</b></h6>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container" id="mysong">
+                <div class="shadow p-3 mb-5 bg-white rounded">
+                    <center><h3>SONGS</h3></center>
+                    <div class="table-responsive">
+                    <table class="table">
+                
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Songname</th>
+                    <th scope="col">Language</th>
+                    <th scope="col">Genre</th>
+                    <th scope="col">Song</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for s in songs %}
+                    <tr>
+                        <th scope="row">{{s.id}}</th>
+                        <td>{{s.songname}}</td>
+                        <td>{{s.songtype}}</td>
+                        <td>{{s.songgenre}}</td>
+                        <td>
+                            <audio controls="controls">
+                                <source src="{{ s.document.url }}" type="audio/mp3" />
+                            </audio>
+                        </td>
+                      </tr>
+                      {% endfor %}
+   </tbody>
+   </table> 
+   </div>
+</div>
+</div>
+
+    <div class="container" id="mytour">
+        <div class="shadow p-3 mb-5 bg-white rounded">
+            <center><h3>TOURS</h3></center>
+            <div class="table-responsive">
+        <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Eventname</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Date/Day</th>
+                    <th scope="col">Image</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for t in tours %}
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>{{t.eventname}}</td>
+
+                        <td>{{t.address}},{{t.city}}</td>
+                        <td>{{t.time}}</td>
+                        <td>{{t.date}}/{{t.day}}</td>
+                        <td> <img src="/media/{{t.tourimage}}" alt="" height="80px" width="80px"></td>
+
+                      </tr>
+                      {% endfor %}
+   </tbody>
+   </table>
+</div>
+</div>
+</div>
+</section>
+
+
+<footer class="footer-area">
+    <div class="container">
+        <div class="row d-flex flex-wrap align-items-center">
+            <div class="col-12 col-md-6">
+                <a href="#" style="color:beige">HARMONY</a>
+                <p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This is made <i class="fa fa-mic-o" aria-hidden="true"></i> by <a href="#" target="_blank">Harmony</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+            </div>
+        </div>
+    </div>
+
+</footer>
+<!-- ##### Footer Area Start ##### -->
+<script type="text/javascript" src="{% static 'mplayer/js/jquery.jplayer.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'mplayer/js/jplayer.playlist.min.js' %}"></script>
+
+<!-- ##### All Javascript Script ##### -->
+<!-- jQuery-2.2.4 js -->
+<script src="{% static 'home/js/jquery/jquery-2.2.4.min.js' %}"></script>
+<!-- Popper js -->
+<script src="{% static 'home/js/bootstrap/popper.min.js' %}"></script>
+<!-- Bootstrap js -->
+<script src="{% static 'home/js/bootstrap/bootstrap.min.js' %}"></script>
+<!-- All Plugins js -->
+<script src="{% static 'home/js/plugins/plugins.js' %}"></script>
+<!-- Active js -->
+<script src="{% static 'home/js/active.js' %}"></script>
+</body>
+
+</html>

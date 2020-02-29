@@ -25,6 +25,11 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'artform/css/util.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'artform/css/main.css' %}">
 <!--===============================================================================================-->
+<link rel="icon" href="{% static 'home/img/core-img/favicon.ico' %}">
+
+<!-- Stylesheet -->
+<link rel="stylesheet" href="{% static 'home/style.css' %}">
+
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.css">
@@ -34,6 +39,8 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css.map">
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
+
+
 <style>
 label{margin-left: 20px;}
 #datepicker{width:180px; margin: 0 20px 20px 20px;}
@@ -48,11 +55,65 @@ label{margin-left: 20px;}
 </head>
 <body style="background-image: url('{% static "artform/images/bgform3.jpeg" %}'); background-attachment: fixed; background-repeat: no-repeat; background-size: 1750px 1000px;">
 
+    <header class="header-area">
+        <!-- Navbar Area -->
+        <div class="oneMusic-main-menu">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Menu -->
+                    <nav class="classy-navbar justify-content-between" id="oneMusicNav">
+
+                        <!-- Nav brand -->
+                        <a href="#" class="nav-brand" style="color:beige">HARMONY</a>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+
+                            <!-- Close Button -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Nav Start -->
+                            <div class="classynav">
+                                <ul>
+									{% if muser.isadmin == 2 %}
+									<li><a href="/music/home">Home</a></li>
+									<li><a href="/music/home/adsong">Upload Song</a></li>
+									  <li><a href="/music/home/tourpage">Upload Tour</a></li>
+									  <li><a href="/music/home/myprofile">My Profile</a></li>
+								  {% endif %}
+								  {% if muser.isadmin == 0 %}
+									<li><a href="/music/home">Home</a></li>
+									<li><a href="/music/home/applypage">Apply for artist</a></li>   
+									{% endif %}
+                                    <li><a href="/music/home/myplaylist">My Playlist</a></li>
+                                    <li><a href="/music/tourdetail">Events</a></li>
+									<li><a href="/music/logout">Logout</a></li>
+                                </ul>
+
+                               
+                            </div>
+                            <!-- Nav End -->
+
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
 
 	<div class="container-contact100">
 		<div class="wrap-contact100">
-			<form class="contact100-form validate-form" method="post" action="/music/toursub/" enctype="multipart/form-data
-			">
+			<form class="contact100-form validate-form" method="post" action="/music/toursub/" enctype="multipart/form-data">
+			
                 {% csrf_token %}
                 <span class="contact100-form-title">
 					Add Tour
@@ -94,7 +155,7 @@ label{margin-left: 20px;}
 				
                 <div class="wrap-input100 validate-input" data-validate = "valid image">
 					<span class="label-input100">Your Image</span>
-					<input class="input100" type="file" name="photo" accept="image" placeholder="Image To Be Showed">
+					<input class="input100" type="file" name="image" accept="image" placeholder="Image To Be Showed">
 					<span class="focus-input100"></span>
 				</div>
 
@@ -106,6 +167,10 @@ label{margin-left: 20px;}
 				</div>
                  </div>
                
+                 <div class="form-group">
+                    <label for="exampleInputPassword1">time</label>
+                    <input type="time" name="time" class="form-control" id="exampleInputPassword1" required>
+                            </div>
 
                 
 				<div class="container-contact100-form-btn">
@@ -131,6 +196,33 @@ label{margin-left: 20px;}
     
 
     <div id="dropDownSelect1"></div>
+
+
+	<footer class="footer-area">
+        <div class="container">
+            <div class="row d-flex flex-wrap align-items-center">
+                <div class="col-12 col-md-6">
+                    <a href="#" style="color:beige">HARMONY</a>
+                    <p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This is made <i class="fa fa-mic-o" aria-hidden="true"></i> by <a href="#" target="_blank">Harmony</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- ##### Footer Area Start ##### -->
+
+    <!-- ##### All Javascript Script ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="{% static 'home/js/jquery/jquery-2.2.4.min.js' %}"></script>
+    <!-- Popper js -->
+    <script src="{% static 'home/js/bootstrap/popper.min.js' %}"></script>
+    <!-- Bootstrap js -->
+    <script src="{% static 'home/js/bootstrap/bootstrap.min.js' %}"></script>
+    <!-- All Plugins js -->
+    <script src="{% static 'home/js/plugins/plugins.js' %}"></script>
+    <!-- Active js -->
+    <script src="{% static 'home/js/active.js' %}"></script>
 
 <!--===============================================================================================-->
     <script src="{% static 'artform/vendor/jquery/jquery-3.2.1.min.js' %}"></script>

@@ -59,8 +59,18 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                               <ul>
+                                {% if muser.isadmin == 2 %}
                                   <li><a href="/music/home">Home</a></li>
-                                  <li><a href="/music/applypage">Apply for artist</a></li>   
+                                  <li><a href="/music/home/adsong">Upload Song</a></li>
+                                    <li><a href="/music/home/tourpage">Upload Tour</a></li>
+                                    <li><a href="/music/home/myprofile">My Profile</a></li>
+                                {% endif %}
+                                {% if muser.isadmin == 0 %}
+                                  <li><a href="/music/home">Home</a></li>
+                                  <li><a href="/music/home/applypage">Apply for artist</a></li>   
+                                  {% endif %}
+                                  <li><a href="/music/home/myplaylist">MyPlaylist</a></li>
+                                  <li><a href="/music/artist">Artists</a></li>
                                   <li><a href="#">Events</a></li>
                                   <li><a href="/music/logout">Logout</a></li>
                               </ul>
@@ -87,6 +97,7 @@
         <div class="container">
             <div class="row">
               {% for tours in tour %}
+              
                 <!-- Single Event Area -->
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="single-event-area mb-30">
@@ -95,12 +106,12 @@
                         </div>
                         <div class="event-text">
                             <h4>{{tours.eventname}}</h4>
+                            <h4>{{tours.user.last_name}}</h4>
                             <div class="event-meta-data">
-                                <a href="#" class="event-place">time</a>
-                                <a href="#" class="event-date">{{tours.date}}</a>
-                            </div>
-                            <div class="event-meta-data">
-                                <a href="#" class="event-date">{{tours.day}}</a>
+                                <a href="#" class="event-place">{{tours.time}}</a>
+                                <a href="#" class="event-date">{{tours.date}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a>
+                                <a href="#" class="event-date">{{tours.day}}</a><br/>
+                                <br/>
                                 <a href="#" class="event-date">{{tours.address}}</a>
                             </div>
                             <a href="#" class="btn see-more-btn">{{tours.city}}</a>
@@ -132,7 +143,7 @@
                 <div class="col-12 col-md-6">
                     <a href="#" style="color:beige">HARMONY</a>
                     <p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This is made <i class="fa fa-mic-o" aria-hidden="true"></i> by <a href="#" target="_blank">Ram Birla</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This is made <i class="fa fa-mic-o" aria-hidden="true"></i> by <a href="#" target="_blank">Harmony</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
                 </div>
             </div>

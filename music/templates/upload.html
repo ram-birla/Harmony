@@ -28,12 +28,93 @@
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
+<link rel="icon" href="{% static 'home/img/core-img/favicon.ico' %}">
+
+<!-- Stylesheet -->
+<link rel="stylesheet" href="{% static 'home/style.css' %}">
+
 <script>
+const input = document.getElementById('input')
+
+input.addEventListener('change', (event) => {
+  const target = event.target
+  	if (target.files && target.files[0]) {
+
+      /*Maximum allowed size in bytes
+        5MB Example
+        Change first operand(multiplier) for your needs*/
+      const maxAllowedSize = 5 * 1024 * 1024;
+      if (target.files[0].size > maxAllowedSize) {
+      	// Here you can ask your users to load correct file
+       	target.value = 'Upload file upto 5 MB Only'
+      }
+  }
+})
+
+
+
 </script>
 </head>
 <body style="background-image: url('{% static "artform/images/bgform3.jpeg" %}'); background-attachment: fixed; background-repeat: no-repeat; background-size: 1750px 1000px;">
 
+    <header class="header-area">
+        <!-- Navbar Area -->
+        <div class="oneMusic-main-menu">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Menu -->
+                    <nav class="classy-navbar justify-content-between" id="oneMusicNav">
 
+                        <!-- Nav brand -->
+                        <a href="#" class="nav-brand" style="color:beige">HARMONY</a>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+
+                            <!-- Close Button -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Nav Start -->
+                            <div class="classynav">
+                                <ul>
+									{% if muser.isadmin == 2 %}
+									<li><a href="/music/home">Home</a></li>
+									<li><a href="/music/home/adsong">Upload Song</a></li>
+									  <li><a href="/music/home/tourpage">Upload Tour</a></li>
+									  <li><a href="/music/home/myprofile">My Profile</a></li>
+								  {% endif %}
+								  {% if muser.isadmin == 0 %}
+									<li><a href="/music/home">Home</a></li>
+									<li><a href="/music/home/applypage">Apply for artist</a></li>   
+									{% endif %}
+									<li><a href="/music/home/myplaylist">MyPlaylist</a></li>
+                                 
+									<li><a href="/music/tourdetail">Events</a></li>
+									<li><a href="/music/logout">Logout</a></li>
+                                </ul>
+
+                               
+                            </div>
+                            <!-- Nav End -->
+
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+<br/>
+<br/>
+<br/>
 	<div class="container-contact100">
 		<div class="wrap-contact100">
 			<form class="contact100-form validate-form" enctype="multipart/form-data" method="post" action="/music/run/">
@@ -49,7 +130,7 @@
                         <select class="selection-2" name="stype" onchange="chSubgen()" required>
 							<option value='-1'>Song Type</option>
                             {% for songtype in songtypes %}
-                            <option value="{{songtype.id}}">{{songtype.name}}</option>
+                            <option value="{{songtype.name}}">{{songtype.name}}</option>
                             {% endfor %}
                         </select>
                         
@@ -75,7 +156,7 @@
                 
 				<div class="wrap-input100 validate-input" data-validate = "valid audio">
 					<span class="label-input100">Music</span>
-					<input class="input100" type="file" name="myfile" accept="audio" placeholder="Upload your album">
+					<input class="input100" type="file" name="myfile" id="input" accept="audio" placeholder="Upload your album">
 					<span class="focus-input100"></span>
 				</div>
   
@@ -101,6 +182,34 @@
 
 
 	<div id="dropDownSelect1"></div>
+
+	<footer class="footer-area">
+        <div class="container">
+            <div class="row d-flex flex-wrap align-items-center">
+                <div class="col-12 col-md-6">
+                    <a href="#" style="color:beige">HARMONY</a>
+                    <p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This is made <i class="fa fa-mic-o" aria-hidden="true"></i> by <a href="#" target="_blank">Harmony</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- ##### Footer Area Start ##### -->
+
+    <!-- ##### All Javascript Script ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="{% static 'home/js/jquery/jquery-2.2.4.min.js' %}"></script>
+    <!-- Popper js -->
+    <script src="{% static 'home/js/bootstrap/popper.min.js' %}"></script>
+    <!-- Bootstrap js -->
+    <script src="{% static 'home/js/bootstrap/bootstrap.min.js' %}"></script>
+    <!-- All Plugins js -->
+    <script src="{% static 'home/js/plugins/plugins.js' %}"></script>
+    <!-- Active js -->
+    <script src="{% static 'home/js/active.js' %}"></script>
+
+
 
 <!--===============================================================================================-->
 	<script src="{% static 'artform/vendor/jquery/jquery-3.2.1.min.js' %}"></script>

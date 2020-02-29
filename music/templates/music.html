@@ -1,0 +1,229 @@
+{% load static %}
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<title>Harmony</title>
+<!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Classy Audio Player Widget Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //for-mobile-apps -->
+<link href="{% static 'mplayer/css/style.css' %}" rel="stylesheet" type="text/css" media="all" />
+
+<link href="https://fonts.googleapis.com/css?family=Cinzel&display=swap" rel="stylesheet"> 
+<!-- Favicon -->
+<link rel="icon" href="{% static 'home/img/core-img/favicon.ico' %}">
+
+<!-- Stylesheet -->
+<link rel="stylesheet" href="{% static 'home/style.css' %}">
+
+<!-- js -->
+<script src="{% static 'mplayer/js/jquery-1.11.1.min.js' %}"></script>
+<!-- //js -->
+<link href="//fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+<script type="text/javascript">
+//<![CDATA[
+$(document).ready(function(){
+
+	new jPlayerPlaylist({
+		jPlayer: "#jquery_jplayer_2",
+		cssSelectorAncestor: "#jp_container_2"
+	}, 
+    
+    [
+		{% for song in songs %}
+		{
+			title:"{{song.songname}}",
+			mp3:"{{ song.document.url }}",
+			id :"{{song.songid}}"
+		},
+        {% endfor %}
+	], {
+		swfPath: "../../dist/jplayer",
+		supplied: "oga, mp3",
+		wmode: "window",
+		useStateClassSkin: true,
+		autoBlur: false,
+		smoothPlayBar: true,
+		keyEnabled: true
+	});
+});
+//]]>
+</script>
+
+     
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+</head>
+<body>
+<!-- main -->
+<div class="preloader d-flex align-items-center justify-content-center">
+	<div class="lds-ellipsis">
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+	</div>
+</div>
+
+<header class="header-area">
+	<!-- Navbar Area -->
+	<div class="oneMusic-main-menu">
+		<div class="classy-nav-container breakpoint-off">
+			<div class="container">
+				<!-- Menu -->
+				<nav class="classy-navbar justify-content-between" id="oneMusicNav">
+
+					<!-- Nav brand -->
+					<a href="#" class="nav-brand" style="color:beige">HARMONY</a>
+
+					<!-- Navbar Toggler -->
+					<div class="classy-navbar-toggler">
+						<span class="navbarToggler"><span></span><span></span><span></span></span>
+					</div>
+
+					<!-- Menu -->
+					<div class="classy-menu">
+
+						<!-- Close Button -->
+						<div class="classycloseIcon">
+							<div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+						</div>
+
+						<!-- Nav Start -->
+						<div class="classynav">
+							<ul>
+								{% if muser.isadmin == 2 %}
+								<li><a href="/music/home">Home</a></li>
+								<li><a href="/music/home/adsong">Upload Song</a></li>
+								  <li><a href="/music/home/tourpage">Upload Tour</a></li>
+								  <li><a href="/music/home/myprofile">My Profile</a></li>
+							  {% endif %}
+							  {% if muser.isadmin == 0 %}
+								<li><a href="/music/home">Home</a></li>
+								<li><a href="/music/applypage">Apply for artist</a></li>
+								{% endif %}
+								<li><a href="/music/home/myplaylist">My Playlist</a></li>   
+								<li><a href="/music/artist">Artists</a></li>
+                                <li><a href="/music/tourdetail">Events</a></li>
+								<li><a href="/music/logout">Logout</a></li>
+							</ul>
+						</div>
+						<!-- Nav End -->
+
+					</div>
+				</nav>
+			</div>
+		</div>
+	</div>
+</header>
+
+<section class="breadcumb-area bg-img bg-overlay" style="background-image: url('{% static "home/img/bg-img/breadcumb3.jpg" %}');">
+	<div class="bradcumbContent">
+		<p></p>
+		<h2>{{songgenre}}</h2>
+	</div>
+</section>
+<!-- ##### Buy Now Area Start ##### -->
+
+<div class="audio-main">
+
+<center><a href="/music/home/genre/song/shuffle/{{songgenre.id}}"><img src="https://img.icons8.com/metro/26/000000/shuffle.png"></a></center>
+
+	<div class="audio-record-list w3layouts_audio" style="width:500px;">
+		<div class="w3_figure w3ls_fig">
+			<img src="/media/{{songgenre.image}}" alt="dfghjhgfds " class="img-responsive" />
+		</div>
+		<div id="jquery_jplayer_2" class="jp-jplayer w3l_play"></div>
+		<div id="jp_container_2" class="jp-audio agileits_audio" role="application" aria-label="media player">
+			<div class="jp-type-playlist agileinfo_playlist">
+				<div class="jp-gui jp-interface wthree_jp">
+					<div class="jp-controls w3_agileits_controls">
+						<button class="jp-previous" role="button" tabindex="0">previous</button>
+						<button class="jp-play" role="button" tabindex="0">play</button>
+						<button class="jp-next" role="button" tabindex="0">next</button>
+						<button class="jp-stop" role="button" tabindex="0">stop</button>
+					</div>
+					<div class="jp-progress agileits_w3layouts_progress">
+						<div class="jp-seek-bar">
+							<div class="jp-play-bar"></div>
+						</div>
+					</div>
+					<div class="jp-volume-controls agile_volume">
+						<button class="jp-mute" role="button" tabindex="0">mute</button>
+						<button class="jp-volume-max" role="button" tabindex="0">max volume</button>
+						<div class="jp-volume-bar">
+							<div class="jp-volume-bar-value"></div>
+						</div>
+					</div>
+					<div class="jp-time-holder w3_agile_holder">
+						<div class="jp-current-time" role="timer" aria-label="time">&nbsp;</div>
+						<div class="jp-duration" role="timer" aria-label="duration">&nbsp;</div>
+					</div>
+				</div>
+				<div class="jp-playlist w3layouts_either" >
+					<ul>
+						<li>&nbsp;</li>
+					</ul>
+				</div>
+				<div class="jp-no-solution w3_no">
+					<span>Update Required</span>
+					To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+				</div>
+			</div>
+		</div>	
+			<!-- <div class="social-icons w3agile">
+						<ul>
+							
+							<li><a href="#" class="facebook"><img src="{% static 'mplayer/images/fb.png' %}" title="facebook" alt="facebook"></a></li>
+							<li><a href="#" class="twitter"><img src="{% static 'mplayer/images/tw.png' %}" title="twitter" alt="twitter"></a></li>
+							<li><a href="#" class="googleplus"><img src="{% static 'mplayer/images/gp.png' %}" title="googleplus" alt="googleplus"></a></li>
+							<div class="clear"></div>
+						</ul>	
+					</div>		 -->
+	</div>
+		
+</div>
+	<footer class="footer-area">
+		<div class="container">
+			<div class="row d-flex flex-wrap align-items-center">
+				<div class="col-12 col-md-6">
+					<a href="#" style="color:beige">HARMONY</a>
+					<p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+	Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This is made <i class="fa fa-mic-o" aria-hidden="true"></i> by <a href="#" target="_blank">Harmony</a>
+	<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+				</div>
+			</div>
+		</div>
+	</footer>
+	
+<!-- ##### Footer Area Start ##### -->
+
+<!-- ##### All Javascript Script ##### -->
+<!-- jQuery-2.2.4 js -->
+<script src="{% static 'home/js/jquery/jquery-2.2.4.min.js' %}"></script>
+<!-- Popper js -->
+<script src="{% static 'home/js/bootstrap/popper.min.js' %}"></script>
+<!-- Bootstrap js -->
+<script src="{% static 'home/js/bootstrap/bootstrap.min.js' %}"></script>
+<!-- All Plugins js -->
+<script src="{% static 'home/js/plugins/plugins.js' %}"></script>
+<!-- Active js -->
+<script src="{% static 'home/js/active.js' %}"></script>
+<!-- //main -->
+<!-- script for play-list -->
+<link href="{% static 'mplayer/css/jplayer.blue.monday.min.css' %}" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{% static 'mplayer/js/jquery.jplayer.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'mplayer/js/jplayer.playlist.min.js' %}"></script>
+<!-- //script for play-list -->
+</body>
+</html>

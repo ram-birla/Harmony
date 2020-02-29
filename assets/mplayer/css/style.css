@@ -1,0 +1,255 @@
+/*--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+--*/
+/* reset */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,dl,dt,dd,ol,nav ul,nav li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}
+article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, section {display: block;}
+ol,ul{list-style:none;margin:0px;padding:0px;}
+blockquote,q{quotes:none;}
+blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}
+table{border-collapse:collapse;border-spacing:0;}
+/* start editing from here */
+a{text-decoration:none;}
+.txt-rt{text-align:right;}/* text align right */
+.txt-lt{text-align:left;}/* text align left */
+.txt-center{text-align:center;}/* text align center */
+.float-rt{float:right;}/* float right */
+.float-lt{float:left;}/* float left */
+.clear{clear:both;}/* clear float */
+.pos-relative{position:relative;}/* Position Relative */
+.pos-absolute{position:absolute;}/* Position Absolute */
+.vertical-base{	vertical-align:baseline;}/* vertical align baseline */
+.vertical-top{	vertical-align:top;}/* vertical align top */
+nav.vertical ul li{	display:block;}/* vertical menu */
+nav.horizontal ul li{	display: inline-block;}/* horizontal menu */
+img{max-width:100%;}
+/*end reset*/
+html, body{
+	margin:0;
+	font-size: 100%;
+	font-family: 'Ubuntu', sans-serif;
+	background-color: white;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -ms-background-size: cover;
+    background-attachment: fixed;
+}
+body a {
+	text-decoration:none;
+	transition:0.5s all;
+	-webkit-transition:0.5s all;
+	-moz-transition:0.5s all;
+	-o-transition:0.5s all;
+	-ms-transition:0.5s all;
+}
+a:hover{
+ text-decoration:none;
+}
+
+
+h1,h2,h3,h4,h5,h6{
+	margin:0;	
+}	
+p{
+	margin:0;
+}
+/*-- main --*/
+.audio-record-list {
+    margin: 0 auto;
+    width: 34%;
+    border: 20px solid rgb(255,255,255);
+}
+.audio-main {
+	padding:3em 0;
+}
+.audio-main h1{
+	text-align: center;
+	font-size: 45px;
+	color: #fff;
+	margin-bottom:40px;
+}
+.audio-main p{
+	margin-top:2em;
+	line-height:1.8em;
+	color: #fff;
+	font-size: 14px;
+	padding: 0 1em;
+	text-align: center;
+}
+
+.audio-main p a{
+	color:#fff;
+	text-decoration:none;
+}
+/*-- agileits --*/
+.audio-main p a:hover{
+	color:#fff;
+	text-decoration:none;
+}
+.w3_figure img{
+	display:block;
+}
+.social-icons {
+    text-align: center;
+    background: #ffffff;
+    padding: 16px 20px 15px 20px;
+    border-top: 1px solid #fffefe;
+}
+.social-icons ul li {
+    display: inline-block;
+    margin: 0 5px;
+    vertical-align: middle;
+	color:rgb(255, 255, 255);
+}
+.social-icons ul li a:hover{
+    opacity:0.5;
+}
+/*-- //main --*/
+/*-- responsive media queries --*/
+@media (max-width: 1920px){
+
+}
+@media (max-width: 1680px){
+
+
+
+}
+@media (max-width: 1600px){
+
+}
+@media (max-width: 1440px){
+
+
+
+}
+@media (max-width: 1366px){
+
+}
+@media (max-width: 1280px){
+.audio-record-list {
+    width: 40%;
+}
+
+}
+@media (max-width: 1200px){
+
+}
+@media (max-width: 1080px){
+	.audio-main h1, .audio-main h3 {
+		font-size: 44px;
+	}
+}
+/*-- agileits --*/
+@media (max-width: 1050px){
+
+
+}
+@media (max-width: 1024px){
+	.audio-main {
+		padding: 3.5em 0 3.5em 0;
+	}
+.audio-record-list {
+    width: 44%;
+}
+}
+@media (max-width: 991px){
+
+}
+@media (max-width: 900px){
+.audio-main h1, .audio-main h3 {
+    font-size: 40px;
+}
+.audio-record-list {
+    width: 60%;
+}
+}
+@media (max-width: 800px){
+
+}
+@media (max-width: 768px){
+
+}
+@media (max-width: 736px){
+
+}
+@media (max-width: 667px){
+	.audio-record-list {
+		width: 67%;
+	}
+}
+@media (max-width: 640px){
+	.audio-main h1{
+		font-size: 38px;
+	}
+	.audio-record-list {
+		width: 66%;
+	}
+}
+@media (max-width: 600px){
+	.audio-record-list {
+		width: 64%;
+	}
+	.audio-main h1{
+		font-size: 35px;
+	}
+}
+@media (max-width: 568px){
+	.audio-main p {
+		font-size: 13px;
+	}
+	.audio-main h1 {
+		margin-bottom: 25px;
+	}
+	.audio-main {
+		padding: 2em 0;
+	}
+	.audio-record-list {
+		width: 76%;
+	}
+}
+@media (max-width: 480px){
+	.audio-record-list {
+/*-- w3layouts --*/
+		width: 73%;
+	}
+}
+@media(max-width:414px){
+	.audio-record-list {
+		width: 86%;
+	}
+}
+@media(max-width:384px){
+	.audio-record-list {
+		width: 78%;
+	}
+	.jp-audio .jp-volume-controls {
+		right: 32px;
+	}
+	
+}
+@media(max-width:375px){
+	.audio-main h1 {
+		font-size: 25px;
+		margin-bottom:25px;
+	}
+	.audio-main {
+		padding:2em 0;
+	}
+/*-- w3layouts --*/
+	.audio-main p {
+		font-size: 13px;
+		width: 85%;
+		margin: 2em auto 0 auto;
+	}
+}
+@media(max-width:320px){
+.audio-main h1 {
+    font-size: 22px;
+}
+}
+/*-- //responsive media queries --*/

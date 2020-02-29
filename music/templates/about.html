@@ -1,0 +1,355 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>About us</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Mixtape template project">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="{% static 'landing/styles/bootstrap-4.1.2/bootstrap.min.css' %}">
+<link href="{% static 'landing/plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{% static 'landing/plugins/OwlCarousel2-2.2.1/owl.carousel.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'landing/plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'landing/plugins/OwlCarousel2-2.2.1/animate.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'landing/styles/about.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'landing/styles/about_responsive.css' %}">
+</head>
+<body>
+
+<div class="super_container">
+	
+	<!-- Header -->
+	<header class="header">
+		<div class="header_content d-flex flex-row align-items-center justify-content-center">
+			<div class="logo"><a href="#">Harmony</a></div>
+			<div class="log_reg">
+				<ul class="d-flex flex-row align-items-start justify-content-start">
+					<li><a href="/music/login">Login</a></li>
+					<li><a href="/music/register">Register</a></li>
+				</ul>
+			</div>
+			<nav class="main_nav">
+				<ul class="d-flex flex-row align-items-start justify-content-start">
+					<li><a href="/music/">Home</a></li>
+					<li class="active"><a href="#">About us</a></li>
+					<li><a href="/music/info">Info</a></li>
+					<li><a href="/music/contact">Contact</a></li>
+				</ul>
+			</nav>
+			<div class="hamburger ml-auto">
+				<div class="d-flex flex-column align-items-end justify-content-between">
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<!-- Menu -->
+
+	<div class="menu">
+		<div>
+			<div class="menu_overlay"></div>
+			<div class="menu_container d-flex flex-column align-items-start justify-content-center">
+				<div class="menu_log_reg">
+					<ul class="d-flex flex-row align-items-start justify-content-start">
+						<li><a href="/music/login">Login</a></li>
+						<li><a href="/music/register">Register</a></li>
+					</ul>
+				</div>
+				<nav class="menu_nav">
+					<ul class="d-flex flex-column align-items-start justify-content-start">
+						<li><a href="/music/">Home</a></li>
+						<li><a href="#">About us</a></li>
+						<li><a href="music.html">Music</a></li>
+						<li><a href="blog.html">News</a></li>
+						<li><a href="contact.html">Contact</a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+
+	<!-- Home -->
+
+	<div class="home">
+		<div class="home_inner">
+			<!-- Image artist: https://unsplash.com/@yoannboyer -->
+			<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="{% static 'landing/images/about.jpg' %}" data-speed="0.8"></div>
+			<div class="home_container">
+				<div class="home_content text-center">
+					<div class="home_subtitle">Artists in Spotlight</div>
+					<div class="home_title">Hollywood</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <!-- Discs -->
+
+	<div class="discs">
+		<div class="container">
+			<div class="row discs_row">
+				
+				<!-- Disc -->
+				<div class="col-xl-4 col-md-6">
+					<div class="disc">
+						<a href="#">
+							<div class="disc_image"><img src="{% static 'landing/images/jb.jpg' %}" alt="https://unsplash.com/@tanelah"></div>
+							<div class="disc_container">
+								<div>
+									<div class="disc_content_1">
+										<div class="disc_title">Justin Bieber</div>
+										<div class="disc_subtitle">Music For the People</div>
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+
+				<!-- Disc -->
+				<div class="col-xl-4 col-md-6">
+					<div class="disc">
+						<a href="#">
+							<div class="disc_image"><img src="{% static 'landing/images/mm.jpg' %}" alt="https://unsplash.com/@kasperrasmussen"></div>
+							<div class="disc_container">
+								<div>
+									<div class="disc_content_2 d-flex flex-column align-items-center justify-content-center">
+										<div>
+											<div class="disc_title">Eminem</div>
+											<div class="disc_subtitle">the world is ours</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+
+				<!-- Disc -->
+				<div class="col-xl-4 col-md-6">
+					<div class="disc">
+						<a href="#">
+							<div class="disc_image"><img src="{% static 'landing/images/selena.jpg' %}" alt="https://unsplash.com/@photones11"></div>
+							<div class="disc_container">
+								<div>
+									<div class="disc_content_3">
+										<div>
+											<div class="disc_title">Selena Gomez</div>
+											<div class="disc_subtitle">Singles</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+                </div>            
+
+			</div>
+		</div>
+    </div>
+    
+    <div class="home">
+		<div class="home_inner">
+			<!-- Image artist: https://unsplash.com/@yoannboyer -->
+			<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="{% static 'landing/images/about.jpg' %}" data-speed="0.8"></div>
+			<div class="home_container">
+				<div class="home_content text-center">
+					<div class="home_subtitle">Artists in Spotlight</div>
+					<div class="home_title">Bollywood</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <!-- Discs -->
+
+	<div class="discs">
+		<div class="container">
+			<div class="row discs_row">
+				
+				<!-- Disc -->
+				<div class="col-xl-4 col-md-6">
+					<div class="disc">
+						<a href="#">
+							<div class="disc_image"><img src="{% static 'landing/images/ar.jpg' %}" alt="https://unsplash.com/@rexcuando"></div>
+							<div class="disc_container">
+								<div>
+									<div class="disc_content_4 d-flex flex-column align-items-start justify-content-end">
+										<div class="text-left">
+											<div class="disc_title">A.R. Rahman</div>
+											<div class="disc_subtitle">1992</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+
+				<!-- Disc -->
+				<div class="col-xl-4 col-md-6">
+					<div class="disc">
+						<a href="#">
+							<div class="disc_image"><img src="{% static 'landing/images/shirley.jpg' %}" alt="https://unsplash.com/@alicemoore"></div>
+							<div class="disc_container">
+								<div>
+									<div class="disc_content_1">
+										<div class="disc_title">Shirley Setia</div>
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+
+				<!-- Disc -->
+				<div class="col-xl-4 col-md-6">
+					<div class="disc">
+						<a href="#">
+							<div class="disc_image"><img src="{% static 'landing/images/as.png' %}" alt="https://unsplash.com/@arstyy"></div>
+							<div class="disc_container">
+								<div>
+									<div class="disc_content_3">
+										<div class="disc_title">Arijit Singh</div>
+										<div class="disc_subtitle">Music For the People</div>
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+    <!-- Artist -->
+
+	<div class="artist">
+		<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="{% static 'landing/images/artist_2.jpg' %}" data-speed="0.8"></div>
+		<div class="container">
+			<div class="row">
+
+				<!-- Artist Content -->
+				<div class="col-lg-7 offset-lg-5">
+					<div class="artist_content">
+						<div class="section_title_container">
+							<div class="section_subtitle">Why us ?</div>
+							<div class="section_title"><h1>The Harmony</h1></div>
+						</div>
+						<div class="artist_text">
+							<p style="font-size: 17px;">If you’re an amateur artist and want to be a part of our music community, 
+							we’ll show you how to get the most out of Harmony. We provide you a platform where you can 
+							attract listeners to your piece of music. Introduce yourself to listeners with your full profile and artist's pick. 
+							Submit for playlisting, release new music, and find new followers.
+							<br><br>
+							Harmony Music app offers :
+							<br>
+							• Platform to showcase your music talent <br> 
+							• HD music streaming <br>
+							• Different curated playlists for every mood <br>
+							• Create your own playlists and share with friends & family <br>
+							• Manage all your music in one personal place <br>
+							• Follow artists & playlists you love <br>
+							• Search for your favourite songs <br>
+							• Ad-free Music experience <br>
+							• Learn about artist's world tours and ticket bookings <br>
+							• Free music streaming at low internet speeds and many more...  
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Milestones -->
+
+	<div class="milestones">
+		<div class="milestones_container">
+			<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="{% static 'landing/images/milestones.jpg' %}" data-speed="0.8"></div>
+			<div class="container">
+				<div class="row milestones_row">
+					
+					<!-- Milestone -->
+					<div class="col-xl-3 col-md-6 milestone_col">
+						<div class="milestone d-flex flex-row align-items-center justify-content-start">
+							<div class="milestone_icon"><img src="{% static 'landing/images/icon_1.svg' %}" alt="https://www.flaticon.com/authors/smashicons"></div>
+							<div class="milestone_content">
+								<div class="milestone_counter" data-end-value="{{usercount}}" data-sign-after="">0</div>
+										<div class="milestone_text">Users</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Milestone -->
+					<div class="col-xl-3 col-md-6 milestone_col">
+						<div class="milestone d-flex flex-row align-items-center justify-content-start">
+							<div class="milestone_icon"><img src="{% static 'landing/images/icon_2.svg' %}" alt="https://www.flaticon.com/authors/smashicons"></div>
+							<div class="milestone_content">
+								<div class="milestone_counter" data-end-value="{{songcount}}">0</div>
+										<div class="milestone_text">Albums</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Milestone -->
+					<div class="col-xl-3 col-md-6 milestone_col">
+						<div class="milestone d-flex flex-row align-items-center justify-content-start">
+							<div class="milestone_icon"><img src="{% static 'landing/images/icon_3.svg' %}" alt="https://www.flaticon.com/authors/smashicons"></div>
+							<div class="milestone_content">
+								<div class="milestone_counter" data-end-value="{{tourcount}}">0</div>
+								<div class="milestone_text">Concerts</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Milestone -->
+					<div class="col-xl-3 col-md-6 milestone_col">
+						<div class="milestone d-flex flex-row align-items-center justify-content-start">
+							<div class="milestone_icon"><img src="{% static 'landing/images/icon_4.svg' %}" alt="https://www.flaticon.com/authors/smashicons"></div>
+							<div class="milestone_content">
+								<div class="milestone_counter" data-end-value="{{artistcount}}">0</div>
+								<div class="milestone_text">Artists</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Footer -->
+
+	<footer class="footer">
+				<div class="copyright_bar">
+			<span><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="#" target="_blank">Harmony</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+</span>
+		</div>
+	</footer>
+</div>
+
+<script src="{% static 'landing/js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'landing/styles/bootstrap-4.1.2/popper.js' %}"></script>
+<script src="{% static 'landing/styles/bootstrap-4.1.2/bootstrap.min.js' %}"></script>
+<script src="{% static 'landing/plugins/greensock/TweenMax.min.js' %}"></script>
+<script src="{% static 'landing/plugins/greensock/TimelineMax.min.js' %}"></script>
+<script src="{% static 'landing/plugins/scrollmagic/ScrollMagic.min.js' %}"></script>
+<script src="{% static 'landing/plugins/greensock/animation.gsap.min.js' %}"></script>
+<script src="{% static 'landing/plugins/greensock/ScrollToPlugin.min.js' %}"></script>
+<script src="{% static 'landing/plugins/OwlCarousel2-2.2.1/owl.carousel.js' %}"></script>
+<script src="{% static 'landing/plugins/easing/easing.js' %}"></script>
+<script src="{% static 'landing/plugins/progressbar/progressbar.min.js' %}"></script>
+<script src="{% static 'landing/plugins/parallax-js-master/parallax.min.js' %}"></script>
+<script src="{% static 'landing/plugins/jPlayer/jquery.jplayer.min.js' %}"></script>
+<script src="{% static 'landing/plugins/jPlayer/jplayer.playlist.min.js' %}"></script>
+<script src="{% static 'landing/js/about.js' %}"></script>
+</body>
+</html>

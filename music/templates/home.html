@@ -11,7 +11,7 @@
 
     <!-- Title -->
     <title>HarMony</title>
-
+    <link href="https://fonts.googleapis.com/css?family=Cinzel&display=swap" rel="stylesheet"> 
     <!-- Favicon -->
     <link rel="icon" href="{% static 'home/img/core-img/favicon.ico' %}">
 
@@ -60,7 +60,17 @@
                             <div class="classynav">
                                 <ul>
                                     <li><a href="#">Home</a></li>
-                                    <li><a href="/music/applypage">Apply for artist</a></li>   
+                                    {% if muser.isadmin == 0 %}
+                                    <li><a href="/music/home/applypage">Apply for artist</a></li>   
+
+                                    {% endif %}
+                                    {% if muser.isadmin == 2 %}
+                                    <li><a href="/music/home/adsong">Upload Song</a></li>
+                                    <li><a href="/music/home/tourpage">Upload Tour</a></li>
+                                    <li><a href="/music/home/myprofile">My Profile</a></li>
+                                    {% endif %}
+                                    <li><a href="/music/home/myplaylist/">My Playlist</a></li>
+                                    <li><a href="/music/artist">Artists</a></li>
                                     <li><a href="/music/tourdetail">Events</a></li>
                                     <li><a href="/music/logout">Logout</a></li>
                                 </ul>
@@ -91,7 +101,7 @@
                             <div class="hero-slides-content text-center">
                                 <h6 data-animation="fadeInUp" data-delay="100ms">Tune</h6>
                                 <h2 data-animation="fadeInUp" data-delay="300ms">H A R M O N Y <span>H A R M O N Y</span></h2>
-                                <a data-animation="fadeInUp" data-delay="500ms" href="#" class="btn oneMusic-btn mt-50">Discover <i class="fa fa-angle-double-right"></i></a>
+                                <a data-animation="fadeInUp" data-delay="500ms" href="#language" class="btn oneMusic-btn mt-50">Discover <i class="fa fa-angle-double-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -108,8 +118,8 @@
                         <div class="col-12">
                             <div class="hero-slides-content text-center">
                                 <h6 data-animation="fadeInUp" data-delay="100ms">TUNE</h6>
-                                <h2 data-animation="fadeInUp" data-delay="300ms">HARMONY <span>HARMONY</span></h2>
-                                <a data-animation="fadeInUp" data-delay="500ms" href="#" class="btn oneMusic-btn mt-50">Discover <i class="fa fa-angle-double-right"></i></a>
+                                <h2 data-animation="fadeInUp" data-delay="300ms">H A R M O N Y <span>H A R M O N Y </span></h2>
+                                <a data-animation="fadeInUp" data-delay="500ms" href="#events" class="btn oneMusic-btn mt-50">Discover <i class="fa fa-angle-double-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -118,7 +128,7 @@
         </div>
     </section>
     <!-- ##### Hero Area End ##### -->
-
+{% if muser.isadmin == 0 %}
     <!-- ##### Latest Albums Area Start ##### -->
     <section class="oneMusic-buy-now-area has-fluid bg-gray section-padding-100">
         <div class="container-fluid">
@@ -127,6 +137,23 @@
                     <div class="section-heading style-2">
                         <p>Tune into new</p>
                         <h2>Become An Artist</h2>
+                        <p style="font-family: 'Cinzel', serif;">
+                            <br/>
+                            <br/>
+                        <ul type="dot" style="font-size:20px;">
+                            <li >If you’re an amateur artist 
+                                and want to be a part of our music community, 
+                                we’ll show you how to get the most out of Harmony.
+                                We provide you a platform where you can attract listeners
+                                to your piece of music.
+                            <b> Introduce yourself to listeners with your full profile
+                                 and artist's pick. 
+                                 Submit for playlisting, 
+                                 release new music, 
+                                 and find new followers</b> </li>
+                           <li></li>
+                        </ul>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -150,18 +177,18 @@
             <div class="row">
                 <div class="col-12">
                     <div class="load-more-btn text-center wow fadeInUp" data-wow-delay="300ms">
-                        <a href="/music/applypage" class="btn oneMusic-btn">Apply <i class="fa fa-angle-double-right"></i></a>
+                        <a href="/music/home/applypage" class="btn oneMusic-btn">Apply <i class="fa fa-angle-double-right"></i></a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    
+    {% endif %}
     <!-- ##### Latest Albums Area End ##### -->
 
     <!-- ##### Buy Now Area Start ##### -->
-    <section class="oneMusic-buy-now-area has-fluid bg-gray section-padding-100">
-        <div class="container-fluid">
+    <section class="oneMusic-buy-now-area has-fluid bg-gray section-padding-100" id="language">
+        <div class="container-fluid" >
             <div class="row">
                 <div class="col-12">
                     <div class="section-heading style-2">
@@ -178,7 +205,7 @@
                 <div class="col-auto col-sm-auto col-md-auto col-lg-auto">
                     <div class="single-album-area wow fadeInUp" data-wow-delay="200ms">
                         <div class="album-thumb">
-                            <img src="/media/{{songtypes.image}}" alt="" >
+                            <img src="/media/{{songtypes.image}}" alt="" style="height: 13rem; width:13rem;" >
                         </div>
                         <div class="load-more-btn text-center wow fadeInUp" data-wow-delay="300ms">
                             <a href="/music/home/genre/{{songtypes.id}}" class="btn oneMusic-btn">{{songtypes.name}} <i class="fa fa-angle-double-right"></i></a>
@@ -192,67 +219,159 @@
     <!-- ##### Buy Now Area End ##### -->
 
  <!-- ##### Buy Now Area Start ##### -->
- <section class="oneMusic-buy-now-area has-fluid bg-gray section-padding-100">
-    <div class="container-fluid">
+ <section class="latest-albums-area section-padding-100">
+    <div class="container">
         <div class="row">
             <div class="col-12">
                 <div class="section-heading style-2">
-                    <p>Tune into new</p>
-                    <h2>Listen By Artist</h2>
+                    <p>See what’s new</p>
+                    <h2>Listen by artists</h2>
                 </div>
             </div>
-        </div>
-
-        <div class="row">
-
-            <!-- Single Album Area -->
-            <div class="col-auto col-sm-auto col-md-auto col-lg-auto">
-                <div class="single-album-area wow fadeInUp" data-wow-delay="200ms">
-                    <div class="album-thumb">
-                        <img src="{% static 'home/img/bg-img/a4.jpg' %}" alt="" >
-                    </div>
-                </div>
-            </div>
-            <!-- Single Album Area -->
-    
         </div>
 
         <div class="row">
             <div class="col-12">
+                <div class="albums-slideshow owl-carousel">
+                    <!-- Single Album -->
+                    <div class="single-album">
+                        <img src="{% static 'home/img/bg-img/art1.jpeg' %}" alt="">
+                        <div class="album-info">
+                        </div>
+                    </div>
+
+                    <!-- Single Album -->
+                    <div class="single-album">
+                        <img src="{% static 'home/img/bg-img/art5.jpeg' %}" alt="">
+                        <div class="album-info">
+                        </div>
+                    </div>
+
+                    <!-- Single Album -->
+                    <div class="single-album">
+                        <img src="{% static 'home/img/bg-img/art3.jpeg' %}" alt="">
+                        <div class="album-info">
+                        </div>
+                    </div>
+
+                    <!-- Single Album -->
+                    <div class="single-album">
+                        <img src="{% static 'home/img/bg-img/art8.jpeg' %}" alt="">
+                        <div class="album-info">
+                        </div>
+                    </div>
+
+                    <!-- Single Album -->
+                    <div class="single-album">
+                        <img src="{% static 'home/img/bg-img/art6.jpeg' %}" alt="">
+                        <div class="album-info">
+                        </div>
+                    </div>
+
+                    <!-- Single Album -->
+                    <div class="single-album">
+                        <img src="{% static 'home/img/bg-img/art2.jpeg' %}" alt="">
+                        <div class="album-info">
+                            
+                        </div>
+                    </div>
+
+                    <!-- Single Album -->
+                    <div class="single-album">
+                        <img src="{% static 'home/img/bg-img/art7.jpeg' %}" alt="">
+                        <div class="album-info">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
                 <div class="load-more-btn text-center wow fadeInUp" data-wow-delay="300ms">
-                    <a href="/music/artist" class="btn oneMusic-btn">Artist <i class="fa fa-angle-double-right"></i></a>
+                    <a href="/music/artist" class="btn oneMusic-btn">Artists <i class="fa fa-angle-double-right"></i></a>
                 </div>
             </div>
         </div>
     </div>
 </section>
+<!-- ##### Latest Albums Area End ##### -->
 <!-- ##### Buy Now Area End ##### -->
 
-<section class="oneMusic-buy-now-area has-fluid bg-gray section-padding-100">
+<section class="oneMusic-buy-now-area has-fluid bg-gray section-padding-100" id="events">
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
                 <div class="section-heading style-2">
-                    <p>Tune into new</p>
-                    <h2>Live Concert</h2>
+                    <p>See what’s new</p>
+                    <h2>Live Concerts</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-9">
+                <div class="ablums-text text-center mb-70">
+                <p style="font-size:20px;color:black;">Here comes the chance to watch your favourite artist performing LIVE.<br/>
+                Check out "WHEN" , "WHERE" , "WHO" ?
+                </p>    
                 </div>
             </div>
         </div>
 
         <div class="row">
+            <div class="col-12">
+                <div class="albums-slideshow owl-carousel">
+                    <!-- Single Album -->
+                    <div class="single-album">
+                        <img src="{% static 'home/img/bg-img/tour2.jpg' %}" alt="" style="height: 15rem; width:20rem;">
+                        <div class="album-info">
+                        </div>
+                    </div>
 
-            <!-- Single Album Area -->
-            <div class="col-auto col-sm-auto col-md-auto col-lg-auto">
-                <div class="single-album-area wow fadeInUp" data-wow-delay="200ms">
-                    <div class="album-thumb">
-                        <img src="{% static 'home/img/bg-img/a3.jpg' %}" alt="" >
+                    <!-- Single Album -->
+                    <div class="single-album">
+                        <img src="{% static 'home/img/bg-img/tour1.jpg' %}" alt="" style="height: 15rem; width:20rem;">
+                        <div class="album-info">
+                        </div>
+                    </div>
+
+                    <!-- Single Album -->
+                    <div class="single-album">
+                        <img src="{% static 'home/img/bg-img/tour3.jpg' %}" alt="" style="height: 15rem; width:20rem;">
+                        <div class="album-info">
+                        </div>
+                    </div>
+
+                    <!-- Single Album -->
+                    <div class="single-album">
+                        <img src="{% static 'home/img/bg-img/tour4.jpg' %}" alt="" style="height: 15rem; width:20rem;">
+                        <div class="album-info">
+                        </div>
+                    </div>
+
+                    <!-- Single Album -->
+                    <div class="single-album">
+                        <img src="{% static 'home/img/bg-img/tour5.jpeg' %}" alt="" style="height: 15rem; width:20rem;">
+                        <div class="album-info">
+                        </div>
+                    </div>
+
+                    <!-- Single Album -->
+                    <div class="single-album">
+                        <img src="{% static 'home/img/bg-img/tour6.jpeg' %}" alt="" style="height: 15rem; width:20rem;">
+                        <div class="album-info">
+                            
+                        </div>
+                    </div>
+
+                    <!-- Single Album -->
+                    <div class="single-album">
+                        <img src="{% static 'home/img/bg-img/a7.jpg' %}" alt="" style="height: 15rem; width:20rem;">
+                        <div class="album-info">
+                        </div>
                     </div>
                 </div>
             </div>
-            <!-- Single Album Area -->
-    
         </div>
-
         <div class="row">
             <div class="col-12">
                 <div class="load-more-btn text-center wow fadeInUp" data-wow-delay="300ms">
@@ -264,13 +383,92 @@
 </section>
 
 
+{% if muser.isadmin == 2 %}
+<section class="oneMusic-buy-now-area has-fluid bg-gray section-padding-100">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-heading style-2">
+                    <p>Tune into new</p>
+                    <h2>Add Song /Add Tour</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="albums-slideshow owl-carousel">
+                    <!-- Single Album -->
+                    <div class="single-album">
+                        <img src="{% static 'home/img/bg-img/a1.jpg' %}" alt="">
+                        <div class="album-info">
+                        </div>
+                    </div>
+
+                    <!-- Single Album -->
+                    <div class="single-album">
+                        <img src="{% static 'home/img/bg-img/a2.jpg' %}" alt="">
+                        <div class="album-info">
+                        </div>
+                    </div>
+
+                    <!-- Single Album -->
+                    <div class="single-album">
+                        <img src="{% static 'home/img/bg-img/a3.jpg' %}" alt="">
+                        <div class="album-info">
+                        </div>
+                    </div>
+
+                    <!-- Single Album -->
+                    <div class="single-album">
+                        <img src="{% static 'home/img/bg-img/a4.jpg' %}" alt="">
+                        <div class="album-info">
+                        </div>
+                    </div>
+
+                    <!-- Single Album -->
+                    <div class="single-album">
+                        <img src="{% static 'home/img/bg-img/a5.jpg' %}" alt="">
+                        <div class="album-info">
+                        </div>
+                    </div>
+
+                    <!-- Single Album -->
+                    <div class="single-album">
+                        <img src="{% static 'home/img/bg-img/a6.jpg' %}" alt="">
+                        <div class="album-info">
+                            
+                        </div>
+                    </div>
+
+                    <!-- Single Album -->
+                    <div class="single-album">
+                        <img src="{% static 'home/img/bg-img/a7.jpg' %}" alt="">
+                        <div class="album-info">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="load-more-btn text-center wow fadeInUp" data-wow-delay="300ms">
+                    <a href="/music/home/adsong" class="btn oneMusic-btn">Add Song <i class="fa fa-angle-double-right"></i></a>
+                    <a href="/music/home/tourpage" class="btn oneMusic-btn">Add Tour <i class="fa fa-angle-double-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
 
 <section class="featured-artist-area section-padding-100 bg-img bg-overlay bg-fixed" style="background-image: url('{% static "home/img/bg-img/bg-4.jpg" %}')">
     <div class="container">
         <div class="row align-items-end">
             <div class="col-12 col-md-5 col-lg-4">
+                <h4 style="color: white;">{{top.artistname}}</h4>
                 <div class="featured-artist-thumb">
-                    <img src="{% static 'home/img/bg-img/fa.jpg' %}" alt="">
+                    <img src="/media/{{top.image}}" alt="" style="height: 15rem;width: 15rem;">
                 </div>
             </div>
             <div class="col-12 col-md-7 col-lg-8">
@@ -280,13 +478,12 @@
                         <p>Hit Tune</p>
                         <h2>No. 1 Hit</h2>
                     </div>
-                    <p>This tone is the most liked by users</p>
                     <div class="song-play-area">
                         <div class="song-name">
-                            <p>Song</p>
+                            <p>{{tops.songname}}</p>
                         </div>
                         <audio preload="auto" controls>
-                            <source src="{% static 'home/audio/dummy-audio.mp3' %}">
+                            <source src="/media/{{tops.document}}">
                         </audio>
                     </div>
                 </div>
@@ -307,96 +504,50 @@
                         <p>See what’s new</p>
                         <h2>New Hits</h2>
                     </div>
-
+{% for s in song %}
                     <!-- Single Top Item -->
                     <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="100ms">
                         <div class="first-part d-flex align-items-center">
                             <div class="thumbnail">
-                                <img src="{% static 'home/img/bg-img/wt7.jpg' %}" alt="">
+                                <img src="/media/{{s.artist.image}}" alt="" style="height: 4rem; width:4rem;">
                             </div>
                             <div class="content-">
-                                <h6>Sam Smith</h6>
-                                <p>Underground</p>
+                                <h6>{{s.songname}}</h6>
+                                <p>{{s.artist.artistname}}</p>
                             </div>
                         </div>
                         <audio preload="auto" controls>
-                            <source src="{% static 'home/audio/dummy-audio.mp3' %}">
+                            <source src="/media/{{s.document}}">
                         </audio>
                     </div>
 
-                    <!-- Single Top Item -->
-                    <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="150ms">
-                        <div class="first-part d-flex align-items-center">
-                            <div class="thumbnail">
-                                <img src="{% static 'home/img/bg-img/wt8.jpg' %}" alt="">
-                            </div>
-                            <div class="content-">
-                                <h6>Power Play</h6>
-                                <p>In my mind</p>
-                            </div>
-                        </div>
-                        <audio preload="auto" controls>
-                            <source src="{% static 'home/audio/dummy-audio.mp3' %}">
-                        </audio>
-                    </div>
-
-                    <!-- Single Top Item -->
-                    <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="200ms">
-                        <div class="first-part d-flex align-items-center">
-                            <div class="thumbnail">
-                                <img src="{% static 'home/img/bg-img/wt9.jpg' %}" alt="">
-                            </div>
-                            <div class="content-">
-                                <h6>Cristinne Smith</h6>
-                                <p>My Music</p>
-                            </div>
-                        </div>
-                        <audio preload="auto" controls>
-                            <source src="{% static 'home/audio/dummy-audio.mp3' %}">
-                        </audio>
-                    </div>
-
+                 {% endfor %}   <!-- Single Top Item -->
+                   
                 </div>
             </div>
 
             <!-- ***** Popular Artists ***** -->
-            <div class="col-12 col-lg-5">
+            <div class="col-12 col-lg-6">
                 <div class="popular-artists-area mb-100">
                     <div class="section-heading text-left mb-50 wow fadeInUp" data-wow-delay="50ms">
                         <p>See what’s new</p>
                         <h2>Popular Artist</h2>
                     </div>
 
+                    {% for art in artist %}
                     <!-- Single Artist -->
                     <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="100ms">
                         <div class="thumbnail">
-                            <img src="{% static 'home/img/bg-img/pa1.jpg' %}" alt="">
+                            <img src="/media/{{art.image}}" alt="" style="height: 4rem; width: 4rem;">
                         </div>
                         <div class="content-">
-                            <p>Sam Smith</p>
+                            <p style="color:black;">{{art.artistname}}</p>
                         </div>
                     </div>
+                    {% endfor %}
 
                     <!-- Single Artist -->
-                    <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="150ms">
-                        <div class="thumbnail">
-                            <img src="{% static 'home/img/bg-img/pa2.jpg' %}" alt="">
-                        </div>
-                        <div class="content-">
-                            <p>William Parker</p>
-                        </div>
-                    </div>
-
-                    <!-- Single Artist -->
-                    <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="200ms">
-                        <div class="thumbnail">
-                            <img src="{% static 'home/img/bg-img/pa3.jpg' %}" alt="">
-                        </div>
-                        <div class="content-">
-                            <p>Jessica Walsh</p>
-                        </div>
-                    </div>
-
+                   
 
                 </div>
             </div>
@@ -405,58 +556,6 @@
 </section>
 <!-- ##### Miscellaneous Area End ##### -->
 
-    <!-- ##### Miscellaneous Area End ##### -->
-
-    <!-- ##### Contact Area Start ##### -->
-    <!-- <section class="contact-area section-padding-100 bg-img bg-overlay bg-fixed has-bg-img" style="background-image: url(img/bg-img/bg-2.jpg);">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section-heading white wow fadeInUp" data-wow-delay="100ms">
-                        <p>See what’s new</p>
-                        <h2>Get In Touch</h2>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-12">
-                     Contact Form Area 
-                    <div class="contact-form-area">
-                        <form action="#" method="post">
-                            <div class="row">
-                                <div class="col-md-6 col-lg-4">
-                                    <div class="form-group wow fadeInUp" data-wow-delay="100ms">
-                                        <input type="text" class="form-control" id="name" placeholder="Name">
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-4">
-                                    <div class="form-group wow fadeInUp" data-wow-delay="200ms">
-                                        <input type="email" class="form-control" id="email" placeholder="E-mail">
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="form-group wow fadeInUp" data-wow-delay="300ms">
-                                        <input type="text" class="form-control" id="subject" placeholder="Subject">
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group wow fadeInUp" data-wow-delay="400ms">
-                                        <textarea name="message" class="form-control" id="message" cols="30" rows="10" placeholder="Message"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-12 text-center wow fadeInUp" data-wow-delay="500ms">
-                                    <button class="btn oneMusic-btn mt-30" type="submit">Send <i class="fa fa-angle-double-right"></i></button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
-    <!-- ##### Contact Area End ##### -->
-
     <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area">
         <div class="container">
@@ -464,7 +563,7 @@
                 <div class="col-12 col-md-6">
                     <a href="#" style="color:beige">HARMONY</a>
                     <p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This is made <i class="fa fa-mic-o" aria-hidden="true"></i> by <a href="#" target="_blank">Ram Birla</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This is made <i class="fa fa-mic-o" aria-hidden="true"></i> by <a href="#" target="_blank">Harmony</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
                 </div>
             </div>
