@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Contact V4</title>
+	<title>Harmony</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -32,26 +32,42 @@
 
 <!-- Stylesheet -->
 <link rel="stylesheet" href="{% static 'home/style.css' %}">
-
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+   
 <script>
-const input = document.getElementById('input')
+// const input = document.getElementById('input')
 
-input.addEventListener('change', (event) => {
-  const target = event.target
-  	if (target.files && target.files[0]) {
+// input.addEventListener('change', (event) => {
+//   const target = event.target
+//   	if (target.files && target.files[0]) {
 
-      /*Maximum allowed size in bytes
-        5MB Example
-        Change first operand(multiplier) for your needs*/
-      const maxAllowedSize = 5 * 1024 * 1024;
-      if (target.files[0].size > maxAllowedSize) {
-      	// Here you can ask your users to load correct file
-       	target.value = 'Upload file upto 5 MB Only'
-      }
-  }
-})
-
-
+//       /*Maximum allowed size in bytes
+//         5MB Example
+//         Change first operand(multiplier) for your needs*/
+//       const maxAllowedSize = 5 * 1024 * 1024;
+//       if (target.files[0].size > maxAllowedSize) {
+//       	// Here you can ask your users to load correct file
+//        	target.value = 'Upload file upto 5 MB Only'
+//       }
+//   }
+// })
+const songs = [
+	{% for songgenre in songgenres %}
+	{
+		type : "{{songgenre.songtype.name}}",
+		name : "{{songgenre.name}}"
+	},
+{% endfor %}
+]
+function chgen(){
+	lang = document.getElementById('lang').value
+	gen = document.getElementById('gen') 
+	gen.innerHTML=`<option value='-1'>Song Genre</option>`
+	songs.map(s=>{
+		if (s.type == lang)
+		gen.innerHTML +=`<option value="${s.name}">${s.name}</option>`
+	})
+}
 
 </script>
 </head>
@@ -127,10 +143,10 @@ input.addEventListener('change', (event) => {
 				<div class="wrap-input100 input100-select">
 					<span class="label-input100">Song Type</span>
 					<div>
-                        <select class="selection-2" name="stype" onchange="chSubgen()" required>
+                        <select class="selection-2" id="lang" name="stype" onchange="chgen()" required>
 							<option value='-1'>Song Type</option>
                             {% for songtype in songtypes %}
-                            <option value="{{songtype.name}}">{{songtype.name}}</option>
+                            <option value="{{songtype.name}}" >{{songtype.name}}</option>
                             {% endfor %}
                         </select>
                         
@@ -143,11 +159,9 @@ input.addEventListener('change', (event) => {
 				<div class="wrap-input100 input100-select">
 					<span class="label-input100">Song Genre</span>
 					<div>
-						<select class="selection-2" name="sgenre">
+						<select class="selection-2" id="gen" name="sgenre" required>
 							<option value='-1'>Song Genre</option>
-                            {% for songgenre in songgenres %}
-                            <option value="{{songgenre.name}}">{{songgenre.name}}</option>
-                            {% endfor %}
+
                         </select>
 					</div>
 					<span class="focus-input100"></span>

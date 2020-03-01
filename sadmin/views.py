@@ -4,16 +4,30 @@ from django.contrib import messages
 from django.contrib.auth.models import User, auth
 from music.models import Muser,Artist,Song,Songgenre,Songtype,Tour,Playlist,Follow
 
+def checkAdmin(id):
+    user = User.objects.get(id = id)
+    muser = Muser.objects.get(user = user)
+    if muser.isadmin == 1:
+        return False
+    else:
+        return True
+
+
 def adminpage(req):
     if not req.user.is_authenticated:
         return redirect('/music/login')
     else:
+        if checkAdmin(req.user.id):
+            return redirect('/music/login')
+
         return render(req,'shome.html')
     
 def admindash(req):
     if not req.user.is_authenticated:
         return redirect('/music/login')
     else:
+        if checkAdmin(req.user.id):
+            return redirect('/music/login')
 
         artist = Artist.objects.all().order_by()[::-1] 
         context = {'artists':artist}
@@ -24,6 +38,9 @@ def artistDetails(request, artist_id):
     if not request.user.is_authenticated:
         return redirect('/music/login')
     else:
+        if checkAdmin(request.user.id):
+            return redirect('/music/login')
+
         artist = Artist.objects.get(artistid=artist_id)
         return render(request, 'artistDetails.html',{'artists':artist})
 
@@ -57,6 +74,8 @@ def tourdash(req):
     if not req.user.is_authenticated:
         return redirect('/music/login')
     else:
+        if checkAdmin(req.user.id):
+            return redirect('/music/login')
 
         tour = Tour.objects.all().order_by()[::-1] 
         context = {'tours':tour}
@@ -67,6 +86,8 @@ def songdash(req):
     if not req.user.is_authenticated:
         return redirect('/music/login')
     else:
+        if checkAdmin(req.user.id):
+            return redirect('/music/login')
 
         song = Song.objects.all().order_by()[::-1] 
         context = {'songs':song}
@@ -77,6 +98,8 @@ def followdash(req):
     if not req.user.is_authenticated:
         return redirect('/music/login')
     else:
+        if checkAdmin(req.user.id):
+            return redirect('/music/login')
 
         follow = Follow.objects.all().order_by()[::-1] 
         context = {'follows':follow}
@@ -87,12 +110,18 @@ def utype(req):
     if not req.user.is_authenticated:
         return redirect('/music/login')
     else:
+        if checkAdmin(req.user.id):
+            return redirect('/music/login')
+
         return render(req,'type.html')
 
 def ugenre(req):
     if not req.user.is_authenticated:
         return redirect('/music/login')
     else:
+        if checkAdmin(req.user.id):
+            return redirect('/music/login')
+
         songtype = Songtype.objects.all() 
         return render(req,'ugenre.html',{'songtype':songtype})
 
