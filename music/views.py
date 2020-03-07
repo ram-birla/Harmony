@@ -141,7 +141,7 @@ def homePage(req):
         songtypes = Songtype.objects.all()
         songgenres = Songgenre.objects.all()
         songs = Song.objects.order_by('-clickCount')[0:10]
-        artist = Artist.objects.order_by('-songcount')[0:2]
+        # artist = Artist.objects.order_by('-songcount')[0:2]
         top = Artist.objects.order_by('-fcount')[0]
         artist = Artist.objects.order_by('-fcount')[0:10]
         tops = Song.objects.order_by('-clickCount')[0]
@@ -414,11 +414,12 @@ def follow(req, artist_id):
         uid = req.user.id
         user = User.objects.get(id = uid)
         artist = Artist.objects.get(artistid = artist_id)
-
+        artist.inFcount() 
         print(user,artist)
         #instance upload
         follow = Follow(following = artist, follower = user)
         follow.save()
+        artist.save()
         return HttpResponse("DONE")
 
 def unfollow(req, artist_id):
@@ -428,11 +429,12 @@ def unfollow(req, artist_id):
         uid = req.user.id
         user = User.objects.get(id = uid)
         artist = Artist.objects.get(artistid = artist_id)
-
+        artist.deFcount()
         print(user,artist)
         #instance delete
         follower = Follow.objects.get(following = artist, follower = user)
         follower.delete()
+        artist.save()
         return HttpResponse("UNFOLLOWED")
 
 def addToPlaylist(req, song_id):
