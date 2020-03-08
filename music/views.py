@@ -81,6 +81,15 @@ def reg(request):
     else:
         return redirect('/music/register')
 
+def checkmail(request, email_id):
+    print(email_id)
+    res=''
+    if User.objects.filter(email=email_id).exists():
+        res = 'email already registered'
+        return HttpResponse(res)
+    else:
+        return HttpResponse('')
+
 def login(request):
     if request.method == 'POST':
         email = request.POST['email']

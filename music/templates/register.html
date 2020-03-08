@@ -32,6 +32,22 @@
 
 <!-- Stylesheet -->
 <link rel="stylesheet" href="{% static 'home/style.css' %}">
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    function checkmail(){
+        var email = document.getElementById('email').value
+        axios.get('checkmail/'+email)
+        .then(res=>{
+            document.getElementById('checkmail').innerHTML = res.data
+            console.log(res)
+        })
+        .catch(e=>{
+            console.log(e)
+     
+})
+    }
+</script>
+
 
 </head>
 <body style="background-image: url('{% static "artform/images/bgform3.jpeg" %}'); background-attachment: fixed; background-repeat: no-repeat; background-size: 1750px 1000px;">
@@ -94,8 +110,11 @@
                             </div> 
                             <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
                                 <span class="label-input100">Email</span>
-                                <input class="input100" type="text" name="email" placeholder="Enter your email addess">
+                                <input class="input100" type="text" name="email" id="email" onblur="checkmail()" placeholder="Enter your email addess">
                             <span class="focus-input100"></span>
+                            <h5 id="checkmail" style="color: rgb(233, 64, 13); text-align:center;">
+
+                            </h5>    
                             </div>  
                             <div class="wrap-input100 validate-input" data-validate = "valid image">
                                 <span class="label-input100">Your Image</span>
@@ -140,7 +159,15 @@
                                 </div>
                             </div>
                         </form>
-                       <center><b><a href="/music/login">I Am Already A Member ></a></b></center>
+                       <center><b><a href="/music/login">I Am Already A Member ></a></b>
+                        {% for message in messages %}
+                        <div class="container">
+                            <h3 style="color: red; text-align:center; ">{{message}}</h3>
+                        </div>
+                        {% endfor %}
+        
+        
+                    </center>
                     </div>
                 </div>
     

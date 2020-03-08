@@ -13,6 +13,8 @@ urlpatterns = [
     path("register/",views.register),
     path("reg",views.reg),
     path("log",views.login),
+    # checkmail
+    path('register/checkmail/<email_id>', views.checkmail),
     # logout
     path('logout',views.logout),
     # homepage user,artist
