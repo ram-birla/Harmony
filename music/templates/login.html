@@ -99,8 +99,10 @@
                 <div class="wrap-input100 validate-input" data-validate="Name is required">
 					<span class="label-input100">Password</span>
 					<input class="input100" type="password" name="password" placeholder="Enter your password">
-					<span class="focus-input100"></span>
-				</div>
+                    <span class="focus-input100"></span>
+                    
+                </div>
+                
                 <div class="container-contact100-form-btn">
 					<div class="wrap-contact100-form-btn">
 						<div class="contact100-form-bgbtn"></div>
@@ -113,7 +115,16 @@
 					</div>
 				</div>
             </form>
-            <center><b><a href="/music/register">Become A Member ></a></b></center>
+            <center>
+                <b><a href="/music/forgotpassword">Forgot password ></a></b><br/>
+                <b><a href="/music/register">Become A Member ></a></b>
+                {% for message in messages %}
+                <div class="container">
+                    <h3 style="color: red; text-align:center; ">{{message}}</h3>
+                </div>
+                {% endfor %}
+                
+            </center>
 		</div>
 	</div>
     <!-- JS -->

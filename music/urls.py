@@ -13,6 +13,11 @@ urlpatterns = [
     path("register/",views.register),
     path("reg",views.reg),
     path("log",views.login),
+    #forgot password
+    path('forgotpassword/',views.forgotpass),
+    path('pass',views.passw),
+    path('setpass/',views.chngpass),
+    path('confirmpass',views.confirmpass),
     # checkmail
     path('register/checkmail/<email_id>', views.checkmail),
     # logout

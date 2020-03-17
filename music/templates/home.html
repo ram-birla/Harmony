@@ -518,7 +518,7 @@
                                 <p>{{s.artist.artistname}}</p>
                             </div>
                         </div>
-                        <audio preload="auto" controls>
+                        <audio class="playback" preload="none" controls>
                             <source src="/media/{{s.document}}">
                         </audio>
                     </div>
@@ -573,6 +573,20 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     </footer>
     <!-- ##### Footer Area Start ##### -->
 
+    <script>
+        $(".playback").click(function(e) {
+
+// pause all other tracks
+$('.audio').each(function () {
+  var song = this;
+  if (!song.paused) { song.pause(); }
+});
+
+// play the audio associated with this element
+this.play();
+
+});
+    </script>
     <!-- ##### All Javascript Script ##### -->
     <!-- jQuery-2.2.4 js -->
     <script src="{% static 'home/js/jquery/jquery-2.2.4.min.js' %}"></script>

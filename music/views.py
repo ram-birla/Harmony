@@ -6,6 +6,12 @@ from django.contrib.auth.models import User, auth
 from . models import Muser,Artist,Song,Songgenre,Songtype,Tour,Playlist,Follow
 import datetime 
 import random
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from random import randint
+
+
 # Create your views here.
 def landingpage(req):
     return render(req,"landing.html")
@@ -69,6 +75,7 @@ def reg(request):
                 user.save()
                 muser.save()
                 print('user created')
+                sendMail(name,email)
                 user = auth.authenticate(username=username,password=password1)
                 if user is not None:
                     auth.login(request,user)
@@ -90,6 +97,46 @@ def checkmail(request, email_id):
     else:
         return HttpResponse('')
 
+# send mail 
+
+def sendMail(name,email):
+    msg = MIMEMultipart('alternative')
+    msg['Subject'] = "Registration"
+    msg['From'] = 'harmonymusic1213@gmail.com'
+    msg['To'] = email
+	
+    html = """
+		<html>		  
+		  <body>
+		    <h1 style='color:red'>Registration Success!!</h1>
+		    <hr>
+		    <b>Welcome {0} to Harmony </b>
+		    <br>
+            Your registration at Harmony is Successfull!<br>
+		    Enjoy and Stream High Quality of Songs from your favourite artist and keep sharing.<br>
+		    #goHarmony
+		    <br><br>
+		    Thanks
+            <br/>
+            Team Harmony
+		  </body>
+		</html>
+		""".format(name)
+    part2 = MIMEText(html, 'html')
+    msg.attach(part2)
+
+
+    fromaddr = 'harmonymusic1213@gmail.com'
+    toaddrs  = email	
+    username = 'harmonymusic1213@gmail.com'
+    password = 'asdf13ASDF'
+    server = smtplib.SMTP('smtp.gmail.com:587')
+    server.starttls()
+    server.login(username,password)
+    server.sendmail(fromaddr, toaddrs, msg.as_string())
+    server.quit()
+ 
+
 def login(request):
     if request.method == 'POST':
         email = request.POST['email']
@@ -99,8 +146,10 @@ def login(request):
             # cuser = User.objects.get(email=email)
             # print(cuser)
             # cseller = Seller.objects.get(user_id=cuser.id)
+            print("---------")
             user = auth.authenticate(username=email, password=password)
-            muser = Muser.objects.get(user_id=user.id)
+            print(user)
+            muser = Muser.objects.get(user=user)
             print("---------------------------")
             print(user,muser)
             print("---------------------------")
@@ -129,13 +178,110 @@ def login(request):
                     return redirect('/music/home')
 
             else:
+                messages.info(request,'Invalid User,Register Yourself')
                 return redirect('/music/login')
         except:
+            messages.info(request,'Invalid Email or password')
             print('except')
             return redirect('/music/login')
 
     else:
+        messages.info(request,'Check Your Credentials')
         return redirect('/music/login')
+
+def forgotpass(req):
+    return render(req,'forgot.html')
+
+def passw(req):
+    if req.method == 'POST':
+        email = req.POST.get('email')
+        print(email)
+        try:
+            user = User.objects.get(email=email)
+            print(user.last_name)
+            otp = sendmail(user.last_name,email)
+            muser = Muser.objects.get(user=user)
+            print(muser)
+            muser.otp = otp
+            print(muser.otp)
+            muser.save()
+            return redirect('/music/setpass')
+        except:
+            messages.info(req,'Email doesn"t exist')
+            return redirect('/music/forgotpassword/')
+    else:
+        return HttpResponse("Failed")
+    
+
+def chngpass(req):
+    return render(req,"change.html")
+
+def confirmpass(req):
+    if req.method == 'POST':
+        email = req.POST.get('email')
+        otp = req.POST.get('otp')
+        password1 = req.POST.get('pass1')
+        password2 = req.POST.get('pass2')
+        print(password1,password2)
+        try:
+            if password1==password2:
+                print("hgfdxfghj")
+                user = User.objects.get(email=email)
+                
+                muser = Muser.objects.get(user=user,otp=otp)
+                print(muser)
+                user.first_name = password1
+                user.set_password(password1)
+                user.save()
+                return redirect('/music/login')
+            else:
+                messages.info(req,'password not matched')
+                return redirect('/music/setpass')
+        except:
+            messages.info(req,'Email entered is incorrect or otp didn"t matched')
+            return redirect('/music/setpass')    
+
+def sendmail(name,mail):
+    otp = randomdigit(6)
+    msg = MIMEMultipart('alternative')
+    msg['Subject'] = "Change Password "
+    msg['From'] = 'harmonymusic1213@gmail.com'
+    msg['To'] = mail
+	
+    html = """
+		<html>		  
+		  <body>
+		    <h1 style='color:red'>Change Password</h1>
+		    <hr>
+		    <b>{0} , </b>
+		    <br>
+		    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Change Your Passsword using this OTP:<b>{1}</b>.<br><br>
+		    Thanks
+            <br/>
+            Team Harmony
+		  </body>
+		</html>
+		""".format(name,otp)
+    part2 = MIMEText(html, 'html')
+    msg.attach(part2)
+
+
+    fromaddr = 'harmonymusic1213@gmail.com'
+    toaddrs  = mail	
+    username = 'harmonymusic1213@gmail.com'
+    password = 'asdf13ASDF'
+    server = smtplib.SMTP('smtp.gmail.com:587')
+    server.starttls()
+    server.login(username,password)
+    server.sendmail(fromaddr, toaddrs, msg.as_string())
+    server.quit()
+    return otp
+
+def randomdigit(n):
+    range_start = 10**(n-1)
+    range_end = (10**n)-1
+    return randint(range_start, range_end)    
 
 
 def logout(request):

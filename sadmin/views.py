@@ -3,6 +3,9 @@ from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth.models import User, auth
 from music.models import Muser,Artist,Song,Songgenre,Songtype,Tour,Playlist,Follow
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 def checkAdmin(id):
     user = User.objects.get(id = id)
@@ -59,7 +62,8 @@ def final(request):
 
             artist.save()
             muser.save()
-
+            rejectMail(artist.artistname,artist.muser.user.email)
+            
         elif reject==None:
             print(approve)
             artist.status = 1
@@ -67,6 +71,7 @@ def final(request):
             muser.isadmin = 2
             artist.save()
             muser.save()
+            acceptMail(artist.artistname,artist.muser.user.email)
             print(artist.muser.isadmin)
     return redirect('dash')
 
@@ -151,4 +156,81 @@ def uploadgenre(req):
             songgenre.save()
             return redirect('/sadmin/genre')
         return redirect('/sadmin/')
+
+def acceptMail(name,email):
+    msg = MIMEMultipart('alternative')
+    msg['Subject'] = "Accepted as an artist"
+    msg['From'] = 'harmonymusic1213@gmail.com'
+    msg['To'] = email
+	
+    html = """
+		<html>		  
+		  <body>
+		    <h1 style='color:red'>Accept</h1>
+		    <hr>
+		    <b>Welcome {0} to Harmony </b>
+		    <br>
+            Congratulations! You are now a verified artist at Harmony Music.<br>
+		    <br>
+		    As an artist Harmony gives you the opportunity to showcase your talent,
+		    also you can stream music, upload your songs along with the information
+		    related to tours and other events absolutely FREE.
+		    #goHARMONY 
+		    <br><br>
+		    Thanks
+            <br/>
+            Team Harmony
+		  </body>
+		</html>
+		""".format(name)
+    part2 = MIMEText(html, 'html')
+    msg.attach(part2)
+
+
+    fromaddr = 'harmonymusic1213@gmail.com'
+    toaddrs  = email	
+    username = 'harmonymusic1213@gmail.com'
+    password = 'asdf13ASDF'
+    server = smtplib.SMTP('smtp.gmail.com:587')
+    server.starttls()
+    server.login(username,password)
+    server.sendmail(fromaddr, toaddrs, msg.as_string())
+    server.quit()
     
+
+def rejectMail(name,email):
+    msg = MIMEMultipart('alternative')
+    msg['Subject'] = "Rejected as an artist"
+    msg['From'] = 'harmonymusic1213@gmail.com'
+    msg['To'] = email
+	
+    html = """
+		<html>		  
+		  <body>
+		    <h1 style='color:red'>REJECT</h1>
+		    <hr>
+		    <b>{0}, </b>
+		    <br>
+            Sorry ,You are no longer a member of Harmony Artist.
+		    Try applying again.
+		    #goHARMONY
+     		<br><br>
+		    Thanks
+            <br/>
+            Team Harmony
+		  </body>
+		</html>
+		""".format(name)
+    part2 = MIMEText(html, 'html')
+    msg.attach(part2)
+
+
+    fromaddr = 'harmonymusic1213@gmail.com'
+    toaddrs  = email	
+    username = 'harmonymusic1213@gmail.com'
+    password = 'asdf13ASDF'
+    server = smtplib.SMTP('smtp.gmail.com:587')
+    server.starttls()
+    server.login(username,password)
+    server.sendmail(fromaddr, toaddrs, msg.as_string())
+    server.quit()
