@@ -190,7 +190,7 @@ def acceptMail(name,email):
     fromaddr = 'harmonymusic1213@gmail.com'
     toaddrs  = email	
     username = 'harmonymusic1213@gmail.com'
-    password = ''
+    password = 'asdf13ASDF'
     server = smtplib.SMTP('smtp.gmail.com:587')
     server.starttls()
     server.login(username,password)
@@ -228,7 +228,7 @@ def rejectMail(name,email):
     fromaddr = 'harmonymusic1213@gmail.com'
     toaddrs  = email	
     username = 'harmonymusic1213@gmail.com'
-    password = ''
+    password = 'asdf13ASDF'
     server = smtplib.SMTP('smtp.gmail.com:587')
     server.starttls()
     server.login(username,password)

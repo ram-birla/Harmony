@@ -129,7 +129,7 @@ def sendMail(name,email):
     fromaddr = 'harmonymusic1213@gmail.com'
     toaddrs  = email	
     username = 'harmonymusic1213@gmail.com'
-    password = ''
+    password = 'asdf13ASDF'
     server = smtplib.SMTP('smtp.gmail.com:587')
     server.starttls()
     server.login(username,password)
@@ -270,7 +270,7 @@ def sendmail(name,mail):
     fromaddr = 'harmonymusic1213@gmail.com'
     toaddrs  = mail	
     username = 'harmonymusic1213@gmail.com'
-    password = ''
+    password = 'asdf13ASDF'
     server = smtplib.SMTP('smtp.gmail.com:587')
     server.starttls()
     server.login(username,password)
@@ -298,7 +298,8 @@ def homePage(req):
         songs = Song.objects.order_by('-clickCount')[0:10]
         # artist = Artist.objects.order_by('-songcount')[0:2]
         top = Artist.objects.order_by('-fcount')[0]
-        artist = Artist.objects.order_by('-fcount')[0:10]
+        artist = Artist.objects.filter(status=1).order_by('-fcount')[0:10]
+        print(artist)
         tops = Song.objects.order_by('-clickCount')[0]
         muser = Muser.objects.get(user = req.user.id)
         
