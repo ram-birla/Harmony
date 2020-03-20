@@ -129,7 +129,7 @@ def sendMail(name,email):
     fromaddr = 'harmonymusic1213@gmail.com'
     toaddrs  = email	
     username = 'harmonymusic1213@gmail.com'
-    password = 'asdf13ASDF'
+    password = ''
     server = smtplib.SMTP('smtp.gmail.com:587')
     server.starttls()
     server.login(username,password)
@@ -270,7 +270,7 @@ def sendmail(name,mail):
     fromaddr = 'harmonymusic1213@gmail.com'
     toaddrs  = mail	
     username = 'harmonymusic1213@gmail.com'
-    password = 'asdf13ASDF'
+    password = ''
     server = smtplib.SMTP('smtp.gmail.com:587')
     server.starttls()
     server.login(username,password)
